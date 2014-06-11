@@ -143,6 +143,7 @@ grails.plugin.springsecurity.rejectIfNoRule = true
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/'           : ['permitAll'],
         '/landing'    : ['permitAll'],
-        '/landing.gsp': ['permitAll']
+        '/landing.gsp': ['permitAll'],
+        '/register/*': ['permitAll'],
 ]
 
