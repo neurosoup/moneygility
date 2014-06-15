@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<meta name="layout" content="mm"/>
+		<meta name="layout" content="common"/>
 		<title>Welcome to Grails</title>
 		<style type="text/css" media="screen">
 			#status {

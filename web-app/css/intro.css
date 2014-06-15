@@ -1,0 +1,64 @@
+.intro header {
+    margin: 40px auto 0 auto;
+    padding: 0px 0px 40px;
+    border-bottom: 1px solid #465f69;
+    width: 240px;
+}
+
+.intro h1 {
+    font-size: 46px;
+    color: #eee;
+    font-weight: 300;
+}
+
+.intro h2 {
+    color: #bbbbbb;
+    font-size: 26px;
+    line-height: 40px;
+    font-weight: 300;
+    margin: 0px 0px 60px;
+}
+
+.login-action .btn-lg {
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 25px;
+}
+
+.login-action a {
+    line-height: 24px;
+}
+
+.row.login-action {
+    padding: 30px 0;
+    border-radius: 12px;
+    background-color: #2F404E;
+}
+/*
+.login-action a:hover, a:focus {
+    color: #8fa000;
+    text-decoration: underline;
+}
+*/
+
+.divider {
+    border-right: 1px solid #465F69;
+    height: 250px;
+    position: absolute;
+    right: 50%;
+    top: -30px;
+}
+
+.divider span {
+    background: none repeat scroll 0% 0% #428BCA;
+    color: #FFF;
+    border-radius: 33px;
+    padding: 9px 8px;
+    text-transform: uppercase;
+    font-weight: 400;
+    border: 8px solid #26343F;
+    position: absolute;
+    right: -27px;
+    top: 12%;
+}

@@ -84,7 +84,7 @@
         <jarDirectory url="file://$MODULE_DIR$/lib" recursive="false" />
       </library>
     </orderEntry>
-    <orderEntry type="module" module-name="mm-grailsPlugins" />
+    <orderEntry type="module" module-name="moneygility-grailsPlugins" />
   </component>
 </module>
 

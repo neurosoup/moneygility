@@ -2,7 +2,7 @@
 
 <head>
 <title><g:message code='spring.security.ui.resetPassword.title'/></title>
-<meta name='layout' content='mm'/>
+<meta name='layout' content='common'/>
 </head>
 
 <body>

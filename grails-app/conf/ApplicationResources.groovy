@@ -3,8 +3,19 @@ modules = {
         resource url:'js/application.js'
     }
 
-    mm {
+    common {
         dependsOn 'bootstrap'
-        resource url: [dir: 'css', file: 'mm.css']
+        resource url: [dir: 'css', file: 'common.css']
+    }
+
+    bootstrapValidator {
+        dependsOn 'bootstrap, jquery'
+        resource url: [dir: 'css', file: 'bootstrapValidator.css']
+        resource url: [dir: 'js', file: 'bootstrapValidator.js']
+    }
+
+    intro {
+        dependsOn 'common'
+        resource url: [dir: 'css', file: 'intro.css']
     }
 }
