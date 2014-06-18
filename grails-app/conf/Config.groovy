@@ -92,10 +92,11 @@ grails.hibernate.osiv.readonly = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+        grails.serverURL = "http://localhost:8080"
     }
     production {
         grails.logging.jul.usebridge = false
-        // TODO: grails.serverURL = "http://www.changeme.com"
+        grails.serverURL = "http://www.moneygility.com"
     }
 }
 
@@ -145,10 +146,34 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/landing'    : ['permitAll'],
         '/landing.gsp': ['permitAll'],
         '/register/*': ['permitAll'],
+        '/**/js/**':        ['permitAll'],
+        '/**/css/**':       ['permitAll'],
+        '/**/images/**':    ['permitAll'],
+        '/**/favicon.ico':  ['permitAll'],
+        '/login/**':        ['permitAll'],
+        '/logout/**':       ['permitAll']
 ]
 
 
+/*
+oauth {
+    providers {
+        facebook {
+            api = org.scribe.builder.api.FacebookApi
+            key = '1419982394950725'
+            secret = '76b7c83ed81837d5eb105d969bb58fb1'
+            successUri = '/oauth/facebook/success'
+            failureUri = '/oauth/facebook/error'
+            callback = "${baseURL}/oauth/facebook/callback"
+        }
+    }
+}
+*/
 
-grails.plugins.springsecurity.facebook.domain.classname='FacebookUser'
+// Added by the Spring Security OAuth plugin:
+//grails.plugin.springsecurity.oauth.domainClass = 'com.mm.OAuthID'
+
+
+grails.plugins.springsecurity.facebook.domain.classname='com.mm'
 grails.plugins.springsecurity.facebook.appId='1419982394950725'
 grails.plugins.springsecurity.facebook.secret='76b7c83ed81837d5eb105d969bb58fb1'

@@ -94,5 +94,7 @@ grails.project.dependency.resolution = {
         compile ":google-visualization:0.7"
         compile ":lang-selector:0.3"
         compile ":spring-security-facebook:0.15.2-CORE2"
+        //compile ':spring-security-oauth:2.0.2'
+        //compile ':spring-security-oauth-facebook:0.1'
     }
 }

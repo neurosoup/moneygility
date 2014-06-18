@@ -28,23 +28,23 @@
                 </g:if>
                 <g:else>
                     <div class="form-group">
-                        <label for="username"><g:message code='user.username.label'/></label>
-                        <g:textField name="username" class="form-control" value="${command.username}"/>
+                        <g:textField name="username" class="form-control" value="${command.username}"
+                                     placeholder="${message(code: 'user.username.label')}"/>
                     </div>
 
                     <div class="form-group">
-                        <label for="email"><g:message code='user.email.label'/></label>
-                        <input type="email" class="form-control" name="email" value="${command.email}"/>
+                        <input type="email" class="form-control" name="email" value="${command.email}"
+                               placeholder="${message(code: 'user.email.label')}"/>
                     </div>
 
                     <div class=" form-group">
-                        <label for="password"><g:message code='user.password.label'/></label>
-                        <g:passwordField name="password" class="form-control" value="${command.password}"/>
+                        <g:passwordField name="password" class="form-control" value="${command.password}"
+                                         placeholder="${message(code: 'user.password.label')}"/>
                     </div>
 
                     <div class="form-group">
-                        <label for="password2"><g:message code='user.password2.label'/></label>
-                        <g:passwordField name="password2" class="form-control" value="${command.password2}"/>
+                        <g:passwordField name="password2" class="form-control" value="${command.password2}"
+                                         placeholder="${message(code: 'user.password2.label')}"/>
                     </div>
 
                     <div class="form-group login-action">
