@@ -29,22 +29,22 @@
                 <g:else>
                     <div class="form-group">
                         <g:textField name="username" class="form-control" value="${command.username}"
-                                     placeholder="${message(code: 'user.username.label')}"/>
+                                     placeholder="${message(code: 'spring.security.ui.register.username.label')}"/>
                     </div>
 
                     <div class="form-group">
                         <input type="email" class="form-control" name="email" value="${command.email}"
-                               placeholder="${message(code: 'user.email.label')}"/>
+                               placeholder="${message(code: 'spring.security.ui.register.email.label')}"/>
                     </div>
 
                     <div class=" form-group">
                         <g:passwordField name="password" class="form-control" value="${command.password}"
-                                         placeholder="${message(code: 'user.password.label')}"/>
+                                         placeholder="${message(code: 'spring.security.ui.register.password.label')}"/>
                     </div>
 
                     <div class="form-group">
                         <g:passwordField name="password2" class="form-control" value="${command.password2}"
-                                         placeholder="${message(code: 'user.password2.label')}"/>
+                                         placeholder="${message(code: 'spring.security.ui.register.password2.label')}"/>
                     </div>
 
                     <div class="form-group login-action">
@@ -71,7 +71,7 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                j_username: {
+                username: {
                     message: 'Nom d\'utilisateur incorrect',
                     validators: {
                         notEmpty: {
@@ -88,7 +88,7 @@
                         }
                     }
                 },
-                j_email: {
+                email: {
                     message: 'Email incorrect',
                     validators: {
                         notEmpty: {
@@ -100,7 +100,7 @@
                         }
                     }
                 },
-                j_password: {
+                password: {
                     message: 'Mot de passe incorrect',
                     validators: {
                         notEmpty: {
@@ -114,6 +114,27 @@
                         regexp: {
                             regexp: /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]).*$/,
                             message: 'Le mot de passe doit avoir au moins une lettre, un chiffre et un caractère spécial : !@#$%^&'
+                        }
+                    }
+                },
+                password2: {
+                    message: 'Mot de passe incorrect',
+                    validators: {
+                        notEmpty: {
+                            message: 'La saisie du mot de passe est obligatoire'
+                        },
+                        stringLength: {
+                            min: 8,
+                            max: 64,
+                            message: 'La longueur du mot de passe doit être comprise entre 8 et 64 caractères'
+                        },
+                        regexp: {
+                            regexp: /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]).*$/,
+                            message: 'Le mot de passe doit avoir au moins une lettre, un chiffre et un caractère spécial : !@#$%^&'
+                        },
+                        identical: {
+                            field: 'password',
+                            message: 'Les mots de passe ne sont ps identiques'
                         }
                     }
                 }

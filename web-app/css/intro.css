@@ -55,13 +55,12 @@
     background: none repeat scroll 0% 0% #428BCA;
     color: #FFF;
     border-radius: 33px;
-    padding: 8px 8px;
+    padding: 10px 8px;
     text-transform: uppercase;
     font-weight: 400;
     border: 8px solid #2F404E;
-    position: absolute;
-    left: 35px;
-    top: -25px;
+    position: relative;
+    top: -11px;
 }
 
 .vertical-divider {
@@ -85,7 +84,14 @@
     top: 20px;
 }
 
-.col-centered {
-    float: none;
-    margin: 0 auto;
+.text-center-xs {
+    text-align: center;
+}
+
+@media (min-width: 768px) {
+
+    .text-center-xs {
+        text-align: left;
+    }
+
 }

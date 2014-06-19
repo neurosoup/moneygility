@@ -86,7 +86,7 @@
             </div>
         </div>
 
-        <div class="col-sm-5">
+        <div class="col-sm-5 text-center-xs">
             <sec:ifNotGranted roles="ROLE_USER">
                 <facebookAuth:connect />
             </sec:ifNotGranted>
