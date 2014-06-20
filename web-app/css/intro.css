@@ -31,8 +31,7 @@
 }
 
 .row.login-action {
-    padding: 30px 0;
-    border-radius: 12px;
+    padding: 30px;
     background-color: #2F404E;
     overflow: hidden;
 }
@@ -75,13 +74,13 @@
     background: none repeat scroll 0% 0% #428BCA;
     color: #FFF;
     border-radius: 33px;
-    padding: 9px 8px;
+    padding: 10px 8px;
     text-transform: uppercase;
     font-weight: 400;
     border: 8px solid #2F404E;
-    position: absolute;
-    right: -27px;
-    top: 20px;
+    position: relative;
+    top: 43px;
+    left: 28px;
 }
 
 .text-center-xs {

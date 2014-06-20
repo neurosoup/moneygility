@@ -7,22 +7,21 @@
 </head>
 
 <body>
-
-<div class="container">
+<div class="container-fluid">
 
     <div class="row">
         <h1 class="text-center"><g:message code='spring.security.ui.register.title'/></h1>
 
-        <h2 class="text-center"></h2>
+        <h2 class="text-center"><g:message code='spring.security.ui.register.description'/></h2>
     </div>
 
-    <div class="row">
+    <div class="row login-action">
         <div class="col-sm-4 col-sm-offset-4">
             <g:form role="form" action='register' name='registerForm'>
                 <g:if test='${emailSent}'>
-                    <div class="col-sm-4 col-sm-offset-4">
+                    <div class="col-sm-12">
                         <div class="alert alert-info">
-                            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                            <a class="close" href="${createLink(controller: 'login', action: 'index')}" data-dismiss="alert">&times;</a>
                             <g:message code='spring.security.ui.register.sent'/></div>
                     </div>
                 </g:if>
@@ -49,7 +48,7 @@
 
                     <div class="form-group login-action">
                         <g:submitButton name="${message(code: 'spring.security.ui.register.submit')}"
-                                        class="btn btn-primary btn-lg"/>
+                                        class="btn btn-primary btn-lg btn-block"/>
                     </div>
                 </g:else>
 
@@ -112,7 +111,7 @@
                             message: 'La longueur du mot de passe doit être comprise entre 8 et 64 caractères'
                         },
                         regexp: {
-                            regexp: /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]).*$/,
+                            regexp: /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[+!@#$%^&]).*$/,
                             message: 'Le mot de passe doit avoir au moins une lettre, un chiffre et un caractère spécial : !@#$%^&'
                         }
                     }
@@ -129,12 +128,12 @@
                             message: 'La longueur du mot de passe doit être comprise entre 8 et 64 caractères'
                         },
                         regexp: {
-                            regexp: /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[!@#$%^&]).*$/,
+                            regexp: /^.*(?=.*\d)(?=.*[a-zA-Z])(?=.*[+!@#$%^&]).*$/,
                             message: 'Le mot de passe doit avoir au moins une lettre, un chiffre et un caractère spécial : !@#$%^&'
                         },
                         identical: {
                             field: 'password',
-                            message: 'Les mots de passe ne sont ps identiques'
+                            message: 'Les mots de passe ne sont pas identiques'
                         }
                     }
                 }

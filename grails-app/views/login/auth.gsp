@@ -7,7 +7,7 @@
 </head>
 
 <body>
-<div class="container">
+<div class="container-fluid">
 
     <div class="row">
         <h1 class="text-center"><g:message code='springSecurity.login.title'/></h1>

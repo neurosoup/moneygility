@@ -92,7 +92,6 @@ grails.hibernate.osiv.readonly = false
 environments {
     development {
         grails.logging.jul.usebridge = true
-        grails.serverURL = "http://localhost:8080"
     }
     production {
         grails.logging.jul.usebridge = false
@@ -151,7 +150,9 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/**/images/**':    ['permitAll'],
         '/**/favicon.ico':  ['permitAll'],
         '/login/**':        ['permitAll'],
-        '/logout/**':       ['permitAll']
+        '/logout/**':       ['permitAll'],
+        "/j_spring_security_facebook_redirect": ["IS_AUTHENTICATED_ANONYMOUSLY"],
+        "/j_spring_security_facebook_check":    ["IS_AUTHENTICATED_ANONYMOUSLY"]
 ]
 
 
