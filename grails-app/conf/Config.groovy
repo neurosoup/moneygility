@@ -175,6 +175,6 @@ oauth {
 //grails.plugin.springsecurity.oauth.domainClass = 'com.mm.OAuthID'
 
 
-grails.plugins.springsecurity.facebook.domain.classname='com.mm'
-grails.plugins.springsecurity.facebook.appId='1419982394950725'
-grails.plugins.springsecurity.facebook.secret='76b7c83ed81837d5eb105d969bb58fb1'
+grails.plugin.springsecurity.facebook.domain.classname='com.mm'
+grails.plugin.springsecurity.facebook.appId='1419982394950725'
+grails.plugin.springsecurity.facebook.secret='76b7c83ed81837d5eb105d969bb58fb1'

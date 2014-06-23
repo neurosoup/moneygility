@@ -15,13 +15,20 @@
     <g:layoutHead/>
     <g:javascript library="application"/>
     <r:require modules="common"/>
-    <r:layoutResources />
+    <r:layoutResources/>
 </head>
+
 <body>
+<div>
+    <g:form controller="logout" method="POST">
+        <g:submitButton name="debug logout" class="btn btn-primary btn-xs"/>
+    </g:form>
+</div>
+
 <div class="lang-selector">
-<langs:selector langs="en, fr"/>
+    <langs:selector langs="en, fr"/>
 </div>
 <g:layoutBody/>
-<r:layoutResources />
+<r:layoutResources/>
 </body>
 </html>
