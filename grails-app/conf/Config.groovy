@@ -139,6 +139,7 @@ grails {
 grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.mm.User'
 grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.mm.UserRole'
 grails.plugin.springsecurity.authority.className = 'com.mm.Role'
+grails.plugin.springsecurity.ui.password.validationRegex = '^.*(?=.*\\d)(?=.*[a-zA-Z])(?=.*[_+!@#$%^&]).*$'
 grails.plugin.springsecurity.rejectIfNoRule = true
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/'           : ['permitAll'],
@@ -154,26 +155,6 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         "/j_spring_security_facebook_redirect": ["IS_AUTHENTICATED_ANONYMOUSLY"],
         "/j_spring_security_facebook_check":    ["IS_AUTHENTICATED_ANONYMOUSLY"]
 ]
-
-
-/*
-oauth {
-    providers {
-        facebook {
-            api = org.scribe.builder.api.FacebookApi
-            key = '1419982394950725'
-            secret = '76b7c83ed81837d5eb105d969bb58fb1'
-            successUri = '/oauth/facebook/success'
-            failureUri = '/oauth/facebook/error'
-            callback = "${baseURL}/oauth/facebook/callback"
-        }
-    }
-}
-*/
-
-// Added by the Spring Security OAuth plugin:
-//grails.plugin.springsecurity.oauth.domainClass = 'com.mm.OAuthID'
-
 
 grails.plugin.springsecurity.facebook.domain.classname='com.mm'
 grails.plugin.springsecurity.facebook.appId='1419982394950725'

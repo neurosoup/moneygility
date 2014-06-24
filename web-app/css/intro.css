@@ -26,8 +26,12 @@
     border-radius: 25px;
 }
 
-.login-action a {
+.login-action a, p {
     line-height: 24px;
+}
+
+.login-action p {
+    color: #ffffff;
 }
 
 .row.login-action {

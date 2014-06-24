@@ -19,7 +19,7 @@
 
 <body class="intro">
 <div class="lang-selector">
-    <langs:selector langs="en, en-US, fr, fr-FR"/>
+    <langs:selector langs="en, fr"/>
 </div>
 <header>
     <g:img class="center-block" dir="images" file="logo.png"/>
