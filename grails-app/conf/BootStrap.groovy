@@ -1,6 +1,6 @@
-import com.mm.Role
-import com.mm.User
-import com.mm.UserRole
+import com.moneygility.Role
+import com.moneygility.User
+import com.moneygility.UserRole
 
 class BootStrap {
 

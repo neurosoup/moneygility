@@ -1,4 +1,4 @@
-package com.mm
+package com.moneygility.security
 
 import grails.plugin.springsecurity.SpringSecurityUtils
 

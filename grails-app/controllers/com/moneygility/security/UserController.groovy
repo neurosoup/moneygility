@@ -1,4 +1,4 @@
-package com.mm
+package com.moneygility.security
 
 import grails.plugin.springsecurity.SpringSecurityUtils
 
@@ -7,7 +7,7 @@ class UserController extends grails.plugin.springsecurity.ui.UserController{
       def userSearch() {
         def criteria = lookupUserClass().createCriteria()
 
-        boolean useOffset = params.containsKey('offset')
+        //boolean useOffset = params.containsKey('offset')
         setIfMissing 'max', 10, 100
         setIfMissing 'offset', 0
 

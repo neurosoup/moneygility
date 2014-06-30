@@ -1,4 +1,4 @@
-package com.mm
+package com.moneygility
 
 import org.apache.commons.lang.builder.HashCodeBuilder
 

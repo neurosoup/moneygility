@@ -1,4 +1,4 @@
-package com.mm
+package com.moneygility.security
 
 import grails.plugin.springsecurity.ui.RegistrationCode
 
@@ -6,7 +6,7 @@ class RegistrationCodeController extends grails.plugin.springsecurity.ui.Registr
 
     def registrationCodeSearch() {
 
-        boolean useOffset = params.containsKey('offset')
+        //boolean useOffset = params.containsKey('offset')
         setIfMissing 'max', 10, 100
         setIfMissing 'offset', 0
 
