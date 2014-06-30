@@ -142,16 +142,19 @@ grails.plugin.springsecurity.authority.className = 'com.mm.Role'
 grails.plugin.springsecurity.ui.password.validationRegex = '^.*(?=.*\\d)(?=.*[a-zA-Z])(?=.*[_+!@#$%^&]).*$'
 grails.plugin.springsecurity.rejectIfNoRule = true
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-        '/'           : ['permitAll'],
-        '/landing'    : ['permitAll'],
-        '/landing.gsp': ['permitAll'],
-        '/register/*': ['permitAll'],
-        '/**/js/**':        ['permitAll'],
-        '/**/css/**':       ['permitAll'],
-        '/**/images/**':    ['permitAll'],
-        '/**/favicon.ico':  ['permitAll'],
-        '/login/**':        ['permitAll'],
-        '/logout/**':       ['permitAll'],
+        '/'           :                 ['permitAll'],
+        '/landing'    :                 ['permitAll'],
+        '/register/**':                 ['permitAll'],
+        '/**/js/**':                    ['permitAll'],
+        '/**/css/**':                   ['permitAll'],
+        '/**/images/**':                ['permitAll'],
+        '/**/favicon.ico':              ['permitAll'],
+        '/login/**':                    ['permitAll'],
+        '/logout/**':                   ['IS_AUTHENTICATED_REMEMBERED'],
+        '/user/**':                     ['ROLE_ADMIN'],
+        '/role/**':                     ['ROLE_ADMIN'],
+        '/registrationCode/**':         ['ROLE_ADMIN'],
+        '/securityInfo/**':             ['ROLE_ADMIN'],
         "/j_spring_security_facebook_redirect": ["IS_AUTHENTICATED_ANONYMOUSLY"],
         "/j_spring_security_facebook_check":    ["IS_AUTHENTICATED_ANONYMOUSLY"]
 ]

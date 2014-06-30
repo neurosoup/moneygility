@@ -13,7 +13,7 @@
     <div class="row">
         <h1 class="text-center"><g:message code='spring.security.ui.resetPassword.title'/></h1>
 
-        <h2 class="text-center"><g:message code='spring.security.ui.resetPassword.header'/></h2>
+        %{--<h2 class="text-center"><g:message code='spring.security.ui.resetPassword.header'/></h2>--}%
     </div>
 
     <div class="row">
