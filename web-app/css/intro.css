@@ -16,8 +16,24 @@
     font-size: 26px;
     line-height: 40px;
     font-weight: 300;
+}
+
+.intro h2 > .glyphicon {
+    top: 4px;
+}
+
+.intro .spacer-big {
     margin: 0px 0px 60px;
 }
+
+
+.intro .spacer-medium {
+    margin: 0px 0px 30px;
+}
+
+.intro h1 > span {
+    color: #999;
+} 
 
 .login-action .btn-lg {
     padding: 10px 16px;

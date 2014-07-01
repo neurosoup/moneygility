@@ -1,7 +1,7 @@
 <html>
 
 <head>
-    <meta name='layout' content='intro'/>
+    <link rel="stylesheet" type="text/css" href="web-app/css/intro.css"/><meta name='layout' content='intro'/>
     <r:require module="bootstrapValidator"/>
     <title><g:message code='moneygility.setup.expenses.title'/></title>
 </head>
@@ -10,60 +10,101 @@
 <div class="container-fluid">
 
     <div class="row">
-        <h1 class="text-center"><g:message code='moneygility.setup.expenses.title'/></h1>
+        <h1 class="text-center">
+            <g:message code='moneygility.setup.expenses.title'/>
+            <span><g:message code='moneygility.setup.step1'/></span>
+        </h1>
 
-        <h2 class="text-center"><g:message code='moneygility.setup.expenses.description'/></h2>
+        <h2 class="text-center">
+            <span class="glyphicon glyphicon-ok-sign"></span>
+            <g:message code='moneygility.setup.expenses.description'/>
+        </h2>
+
+        <div class="spacer-big"/>
+
     </div>
 
     <div class="row login-action">
-        <div class="col-sm-4 col-sm-offset-4">
-            <g:form role="form" action='register' name='registerForm'>
-                <g:if test='${emailSent}'>
-                    <div class="col-sm-12">
-                        <div class="alert alert-info">
-                            <a class="close" href="${createLink(controller: 'login', action: 'index')}"
-                               data-dismiss="alert">&times;</a>
-                            <g:message code='spring.security.ui.register.sent'/></div>
-                    </div>
-                </g:if>
-                <g:else>
+        <div class="row">
+            <div class="col-sm-8 col-sm-offset-2">
+                <p class=""><g:message code='moneygility.setup.expenses.intro'/></p>
+
+                <div class="spacer-medium"/>
+
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-4 col-sm-offset-2">
+                <g:form role="form" action='register' name='registerForm'>
+
                     <div class="form-group">
-                        <g:textField name="username" class="form-control" value="${command.username}"
-                                     placeholder="${message(code: 'spring.security.ui.register.username.label')}"/>
+                        <g:textField name="operation" class="form-control"
+                                     placeholder="${message(code: 'moneygility.setup.expenses.addoperation.label')}"/>
                     </div>
 
                     <div class="form-group">
-                        <input type="email" class="form-control" name="email" value="${command.email}"
-                               placeholder="${message(code: 'spring.security.ui.register.email.label')}"/>
-                    </div>
-
-                    <div class=" form-group">
-                        <g:passwordField name="password" class="form-control" value="${command.password}"
-                                         placeholder="${message(code: 'spring.security.ui.register.password.label')}"/>
-                    </div>
-
-                    <div class="form-group">
-                        <g:passwordField name="password2" class="form-control" value="${command.password2}"
-                                         placeholder="${message(code: 'spring.security.ui.register.password2.label')}"/>
+                        <input type="number" class="form-control" name="operationvalue"
+                               placeholder="${message(code: 'moneygility.setup.expenses.addoperation.amount.label')}"/>
                     </div>
 
                     <div class="form-group login-action">
-                        <g:submitButton name="${message(code: 'spring.security.ui.register.submit')}"
-                                        class="btn btn-primary btn-lg btn-block"/>
+                        <g:submitButton
+                                name="${message(code: 'moneygility.setup.expenses.addoperation.submit')}"
+                                class="btn btn-primary btn-lg btn-block"/>
                     </div>
-                </g:else>
 
-            </g:form>
+                </g:form>
+            </div>
+
+            <div class="col-sm-4">
+
+                <div class="row">
+                    <p>La liste...</p>
+                </div>
+
+                <div class="row">
+                    <div class="form-group login-action">
+                        <g:submitButton
+                                name="${message(code: 'moneygility.setup.next.label')}"
+                                class="btn btn-primary btn-lg btn-block"/>
+                    </div>
+                </div>
+
+            </div>
+
         </div>
     </div>
-</div>
 
+    <script>
+        $(document).ready(function () {
+            $('#username').focus();
+        });
 
-<script>
-    $(document).ready(function () {
-        $('#username').focus();
-    });
-</script>
+        $('#registerForm').bootstrapValidator({
+            message: '',
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields: {
+                operationvalue: {
+                    message: '${message(code: "moneygility.setup.expenses.addoperation.amount.invalid")}',
+                    validators: {
+                        notEmpty: {
+                            message: '${message(code: "moneygility.setup.expenses.addoperation.amount.mandatory")}'
+                        },
+                        regexp: {
+                            regexp: /^\d$/,
+                            message: '${message(code: "moneygility.setup.expenses.addoperation.amount.mustbeanumber")}'
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
 
 </body>
 </html>
