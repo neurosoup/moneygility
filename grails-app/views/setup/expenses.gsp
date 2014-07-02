@@ -35,43 +35,41 @@
         <div class="row">
             <div class="col-sm-4 col-sm-offset-2">
 
-                <g:form role="form" action='register' name='registerForm'>
+                <g:form role="form" name='registerForm' action="addoperation">
 
                     <div class="form-group">
                         %{--<div class="row">--}%
-                            %{--<div class="col-xs-8">--}%
-                                <g:textField name="operation" class="form-control"
-                                             placeholder="${message(code: 'moneygility.setup.expenses.addoperation.label')}"/>
-                            %{--</div>--}%
+                        %{--<div class="col-xs-8">--}%
+                        <g:textField name="operation" class="form-control"
+                                     placeholder="${message(code: 'moneygility.setup.expenses.addoperation.label')}"/>
+                        %{--</div>--}%
                         %{--</div>--}%
                     </div>
 
 
                     <div class="form-group">
                         %{--<div class="row">--}%
-                            %{--<div class="col-xs-5">--}%
-                                <input type="number" class="form-control" name="operationvalue"
-                                       placeholder="${message(code: 'moneygility.setup.expenses.addoperation.amount.label')}"/>
-                            %{--</div>--}%
+                        %{--<div class="col-xs-5">--}%
+                        <input type="number" class="form-control" name="operationvalue"
+                               placeholder="${message(code: 'moneygility.setup.expenses.addoperation.amount.label')}"/>
+                        %{--</div>--}%
                         %{--</div>--}%
                     </div>
 
 
-                    <div class="form-group login-action">
+                    <div class="form-group">
 
-                        <div class="col-sm-6">
-                            <g:submitButton
-                                    name="${message(code: 'moneygility.setup.expenses.addoperation.submit')}"
-                                    class="btn btn-primary btn-lg btn-block"/>
-                        </div>
+                        <g:submitToRemote
+                                url="[action: 'addoperation']"
+                                value="${message(code: 'moneygility.setup.expenses.addoperation.submit')}"
+                                class="btn btn-primary btn-lg btn-block"/>
 
                         <div class="spacer-small"></div>
 
-                        <div class="col-sm-6">
-                            <g:submitButton
-                                    name="${message(code: 'moneygility.setup.expenses.nomoreoperation')}"
-                                    class="btn btn-primary btn-lg btn-block"/>
-                        </div>
+                        <g:actionSubmit action="income"
+                                        name="${message(code: 'moneygility.setup.expenses.nomoreoperation')}"
+                                        class="btn btn-primary btn-lg btn-block" value="45"/>
+
                     </div>
 
                 </g:form>
@@ -83,14 +81,21 @@
                 <div class="row">
                     <div class="col-sm-1">
                         <div class="vertical-divider hidden-xs"></div>
+
                         <div class="horizontal-divider visible-xs"></div>
                     </div>
+
                     <div class="col-sm-10">
-                        <p>La liste...</p>
+                        <div id="operations">
+                            <ul class="list-group">
+                                <g:each in="${operations}" var="operation">
+                                    <li class="list-group-item"><span
+                                            class="badge">${operation.value}</span>${operation.label}</li>
+                                </g:each>
+                            </ul>
+                        </div>
                     </div>
                 </div>
-
-
 
             </div>
 
