@@ -19,7 +19,7 @@
     <div class="row login-action">
         <div class="row">
             <div class="col-sm-4 col-sm-offset-4">
-                <p class="text-center"><g:message code='spring.security.ui.forgotPassword.description'/></p>
+                <p><g:message code='spring.security.ui.forgotPassword.description'/></p>
             </div>
         </div>
 
