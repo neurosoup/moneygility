@@ -1,4 +1,4 @@
-package com.moneygility
+package com.moneygility.security
 
 class Role {
 

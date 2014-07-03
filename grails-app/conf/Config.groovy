@@ -135,7 +135,7 @@ grails {
     }
 }
 
-grails.plugin.springsecurity.facebook.domain.classname='com.moneygility.User'
+grails.plugin.springsecurity.facebook.domain.classname='com.moneygility.security.User'
 grails.plugin.springsecurity.facebook.appId='1419982394950725'
 grails.plugin.springsecurity.facebook.secret='76b7c83ed81837d5eb105d969bb58fb1'
 
@@ -143,9 +143,9 @@ grails.plugin.springsecurity.ui.password.validationRegex = '^.*(?=.*\\d)(?=.*[a-
 grails.plugin.springsecurity.ui.register.postRegisterUrl = '/setup'
 
 // Added by the Spring Security Core plugin:
-grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.moneygility.User'
-grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.moneygility.UserRole'
-grails.plugin.springsecurity.authority.className = 'com.moneygility.Role'
+grails.plugin.springsecurity.userLookup.userDomainClassName = 'com.moneygility.security.User'
+grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.moneygility.security.UserRole'
+grails.plugin.springsecurity.authority.className = 'com.moneygility.security.Role'
 grails.plugin.springsecurity.rejectIfNoRule = true
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         '/'           :                 ['permitAll'],
