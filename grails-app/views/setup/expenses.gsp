@@ -1,8 +1,8 @@
 <html>
 
 <head>
-    <link rel="stylesheet" type="text/css" href="web-app/css/intro.css"/><meta name='layout' content='intro'/>
-    <r:require module="bootstrapValidator"/>
+    <r:require module="intro"/>
+    <r:require module="forms"/>
     <title><g:message code='moneygility.setup.expenses.title'/></title>
 </head>
 
@@ -18,7 +18,7 @@
             <g:message code='moneygility.setup.expenses.description'/>
         </h2>
 
-        <div class="spacer-big"/>
+        <div class="spacer-big"></div>
 
     </div>
 
@@ -38,32 +38,23 @@
                 <g:form role="form" name='registerForm' action="addoperation">
 
                     <div class="form-group">
-                        <g:textField name="operation" class="form-control"
+                        <g:textField name="label" class="form-control"
                                      placeholder="${message(code: 'moneygility.setup.expenses.addoperation.label')}"/>
                     </div>
 
 
                     <div class="form-group">
-                        <input type="number" class="form-control" name="operationvalue"
+                        <input type="number" class="form-control" name="amount"
                                placeholder="${message(code: 'moneygility.setup.expenses.addoperation.amount.label')}"/>
                     </div>
 
                     <div class="form-group">
 
-                        <div class="dropdown">
-                            <button class="btn btn-default dropdown-toggle" type="button" id="frequencyMenu" data-toggle="dropdown">
-                                <g:message code="moneygility.operation.frequency.monthly"/>
-                                <span class="caret"></span>
-                            </button>
-                            <ul class="dropdown-menu" role="menu" aria-labelledby="frequencyMenu">
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                                <li role="presentation" class="divider"></li>
-                                <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
-                            </ul>
-                        </div>
-
+                        <select class="selectpicker" data-title="Fréquence">
+                            <option><g:message code="moneygility.operation.frequency.monthly"/></option>
+                            <option>Ketchup</option>
+                            <option>Relish</option>
+                        </select>
 
                     </div>
 
@@ -85,7 +76,6 @@
                 </g:form>
 
             </div>
-
 
             <div class="col-sm-4">
                 <div class="row">
@@ -111,16 +101,14 @@
 
         </div>
     </div>
+</div>
 
-    <script>
-        $(document).ready(function () {
-            $('#username').focus();
-        });
+<g:javascript>
+    $(document).ready(function () {
 
-        $(".dropdown-menu li a").click(function(){
-            var selText = $(this).text();
-            $(this).parents('.btn-group').find('.dropdown-toggle').html(selText+' <span class="caret"></span>');
-        });
+        $('#username').focus();
+
+        $('.selectpicker').selectpicker();
 
         $('#registerForm').bootstrapValidator({
             message: '',
@@ -145,7 +133,9 @@
             }
         });
 
-    </script>
+    });
+
+</g:javascript>
 
 </body>
 </html>
