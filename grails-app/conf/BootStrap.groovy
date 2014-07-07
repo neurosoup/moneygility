@@ -1,21 +1,14 @@
-import com.moneygility.security.Role
-import com.moneygility.security.User
-import com.moneygility.security.UserRole
+import com.moneygility.Frequency
+
 
 class BootStrap {
 
     def init = { servletContext ->
 
-        /*
-        def adminRole = new Role(authority: 'ROLE_ADMIN').save(flush: true)
-        def userRole = new Role(authority: 'ROLE_USER').save(flush: true)
-        def testUser = new User(username: 'me', password: 'password')
-        testUser.save(flush: true)
-        UserRole.create testUser, adminRole, true
+        if (!Frequency.findByCode("moneygility.frequency.monthly")) {
+            new Frequency(code:"moneygility.frequency.monthly", cronExpression: '0 0 1 1 1/1 ? *')
+        }
 
-        assert User.count() == 1
-        assert Role.count() == 2
-        assert UserRole.count() == 1*/
     }
 
     def destroy = {

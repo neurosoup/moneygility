@@ -4,7 +4,7 @@ modules = {
     }
 
     common {
-        dependsOn 'bootstrap'
+        dependsOn 'bootstrap', 'application'
         resource url: [dir: 'css', file: 'common.css']
     }
 

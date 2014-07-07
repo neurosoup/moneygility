@@ -65,6 +65,11 @@
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/mail-1.0.5/grails-app/taglib" isTestSource="false" />
     </content>
     <content url="file://$MODULE_DIR$/target/work/plugins/mongodb-3.0.1" />
+    <content url="file://$MODULE_DIR$/target/work/plugins/quartz-1.0.1">
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/quartz-1.0.1/src/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/quartz-1.0.1/src/groovy" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/quartz-1.0.1/grails-app/services" isTestSource="false" />
+    </content>
     <content url="file://$MODULE_DIR$/target/work/plugins/resources-1.2.7">
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/resources-1.2.7/src/java" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/target/work/plugins/resources-1.2.7/src/groovy" isTestSource="false" />
@@ -135,6 +140,8 @@
           <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/7.0.52/tomcat-embed-el-7.0.52.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.52/tomcat-embed-jasper-7.0.52.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/tomcat-catalina-ant/7.0.52/tomcat-catalina-ant-7.0.52.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/c3p0/c3p0/0.9.1.1/c3p0-0.9.1.1.jar!/" />
+          <root url="jar://$USER_HOME$/.m2/repository/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

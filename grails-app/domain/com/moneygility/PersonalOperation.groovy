@@ -1,11 +1,14 @@
 package com.moneygility
 
-class Operation {
+class PersonalOperation {
 
     static constraints = {
     }
 
     String label
-    Currency amount
+    BigDecimal amount
     Frequency frequency
+
+    static embedded = ['frequency']
+
 }

@@ -1,6 +1,7 @@
 <html>
 
 <head>
+    <meta name='layout' content='intro'/>
     <r:require module="intro"/>
     <r:require module="forms"/>
     <title><g:message code='moneygility.setup.expenses.title'/></title>
@@ -11,7 +12,7 @@
 
     <div class="row">
         <h1 class="text-center"><g:message code='moneygility.setup.expenses.title'/><span><g:message
-                code='moneygility.setup.step1'/></span></h1>
+                code='moneygility.setup.expenses.step'/></span></h1>
 
         <h2 class="text-center">
             <span class="glyphicon glyphicon-ok-sign"></span>
@@ -50,11 +51,16 @@
 
                     <div class="form-group">
 
-                        <select class="selectpicker" data-title="Fréquence">
-                            <option><g:message code="moneygility.operation.frequency.monthly"/></option>
-                            <option>Ketchup</option>
-                            <option>Relish</option>
-                        </select>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <g:select name="frequency" from="${com.moneygility.PersonalOperation.list()}"
+                                <select class="selectpicker" data-title="Fréquence">
+                                    <option><g:message code="moneygility.operation.frequency.monthly"/></option>
+                                    <option>Ketchup</option>
+                                    <option>Relish</option>
+                                </select>
+                            </div>
+                        </div>
 
                     </div>
 
@@ -62,14 +68,15 @@
 
                         <g:submitToRemote
                                 url="[action: 'addoperation']"
-                                value="${message(code: 'moneygility.setup.expenses.addoperation.submit')}"
-                                class="btn btn-primary btn-lg btn-block"/>
+                                class="btn btn-primary btn-lg btn-block"
+                                update="operations"
+                                value="${message(code: 'moneygility.setup.expenses.addoperation.submit')}"/>
 
                         <div class="spacer-small"></div>
 
-                        <g:actionSubmit action="income"
+                        %{--<g:actionSubmit action="income"
                                         name="${message(code: 'moneygility.setup.expenses.nomoreoperation')}"
-                                        class="btn btn-primary btn-lg btn-block" value="45"/>
+                                        class="btn btn-primary btn-lg btn-block" value="45"/>--}%
 
                     </div>
 
@@ -87,12 +94,7 @@
 
                     <div class="col-sm-10">
                         <div id="operations">
-                            <ul class="list-group">
-                                <g:each in="${operations}" var="operation">
-                                    <li class="list-group-item"><span
-                                            class="badge">${operation.value}</span>${operation.label}</li>
-                                </g:each>
-                            </ul>
+                            <p>Will be updated</p>
                         </div>
                     </div>
                 </div>
@@ -118,15 +120,22 @@
                 validating: 'glyphicon glyphicon-refresh'
             },
             fields: {
-                operationvalue: {
-                    message: '${message(code: "moneygility.setup.expenses.addoperation.amount.invalid")}',
+                label : {
                     validators: {
                         notEmpty: {
-                            message: '${message(code: "moneygility.setup.expenses.addoperation.amount.mandatory")}'
+                            message: "${message(code: 'moneygility.setup.expenses.label.mandatory')}"
+                        }
+                    }
+                },
+                amount: {
+                    message: "${message(code: 'moneygility.setup.expenses.addoperation.amount.invalid')}",
+                    validators: {
+                        notEmpty: {
+                            message: "${message(code: 'moneygility.setup.expenses.addoperation.amount.mandatory')}"
                         },
                         regexp: {
                             regexp: /^\d$/,
-                            message: '${message(code: "moneygility.setup.expenses.addoperation.amount.mustbeanumber")}'
+                            message: "${message(code: 'moneygility.setup.expenses.addoperation.amount.mustbeanumber')}"
                         }
                     }
                 }
