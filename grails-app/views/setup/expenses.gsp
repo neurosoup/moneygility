@@ -1,3 +1,5 @@
+<%@ page import="com.moneygility.Operation" %>
+
 <html>
 
 <head>
@@ -53,12 +55,12 @@
 
                         <div class="row">
                             <div class="col-sm-6">
-                                <g:select name="frequency" from="${com.moneygility.PersonalOperation.list()}"
-                                <select class="selectpicker" data-title="Fréquence">
-                                    <option><g:message code="moneygility.operation.frequency.monthly"/></option>
-                                    <option>Ketchup</option>
-                                    <option>Relish</option>
-                                </select>
+                                <g:select
+                                        class="selectpicker" data-title="Fréquence"
+                                        name="frequency"
+                                        from="${Operation.list().frequency}"
+                                        optionKey="code"
+                                        valueMessagePrefix="moneygility.frequency"/>
                             </div>
                         </div>
 

@@ -1,13 +1,9 @@
 package com.moneygility
 
-class PlannedOperation {
+class PlannedOperation extends Operation {
 
     static constraints = {
     }
 
-    String label
-    BigDecimal amount
-    Frequency frequency
-
-    static embedded = ['frequency']
+    static belongsTo = [plan: Plan]
 }

@@ -1,12 +1,20 @@
 import com.moneygility.Frequency
+import com.moneygility.Operation
 
 
 class BootStrap {
 
     def init = { servletContext ->
 
-        if (!Frequency.findByCode("moneygility.frequency.monthly")) {
-            new Frequency(code:"moneygility.frequency.monthly", cronExpression: '0 0 1 1 1/1 ? *')
+        //Add the default frequencies
+        if (!Operation.findByLabel(Frequency.MONTHLY_CODE)) {
+            def operation = new Operation(label: Frequency.MONTHLY_CODE, frequency: Frequency.getMonthly(1))
+
+            if (!operation.save()) {
+                operation.errors.each {
+                    println it
+                }
+            }
         }
 
     }
