@@ -12,7 +12,7 @@ class BootStrap {
 
             if (!operation.save()) {
                 operation.errors.each {
-                    println it
+                    log.debug(it)
                 }
             }
         }

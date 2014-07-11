@@ -10,14 +10,19 @@ class SetupController {
 
         //Create default person associated with the current login
         //Have to add a new screen for choosing personal information
-        def person = new Person(user: user)
+        def person = Person.findByUser(user) ?: new Person(user: user)
 
         //Create first plan associated with the newly created person
         def plan = new Plan(label: message(code: 'moneygility.setup.expenses.firstplan.label'))
-        person.plans.add(plan)
+        person.addToPlans(plan)
         person.activePlan = plan
 
         //save the whole
+        if (!person.save()) {
+            person.errors.each {
+                log.debug(it)
+            }
+        }
         person.save(flush: true)
 
         //Go to the first step of setup

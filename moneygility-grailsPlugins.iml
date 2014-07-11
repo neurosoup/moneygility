@@ -142,8 +142,6 @@
           <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/embed/tomcat-embed-el/7.0.52/tomcat-embed-el-7.0.52.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/embed/tomcat-embed-jasper/7.0.52/tomcat-embed-jasper-7.0.52.jar!/" />
           <root url="jar://$USER_HOME$/.m2/repository/org/apache/tomcat/tomcat-catalina-ant/7.0.52/tomcat-catalina-ant-7.0.52.jar!/" />
-          <root url="jar://$USER_HOME$/.m2/repository/c3p0/c3p0/0.9.1.1/c3p0-0.9.1.1.jar!/" />
-          <root url="jar://$USER_HOME$/.m2/repository/org/quartz-scheduler/quartz/2.2.1/quartz-2.2.1.jar!/" />
         </CLASSES>
         <JAVADOC />
         <SOURCES />

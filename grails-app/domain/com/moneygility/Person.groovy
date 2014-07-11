@@ -9,6 +9,10 @@ class Person {
 
     static hasMany = [operations: PersonalOperation, plans: Plan]
 
+    static mapping = {
+        plans batchSize: 10
+    }
+
     String firstName
     String lastName
     Plan activePlan
