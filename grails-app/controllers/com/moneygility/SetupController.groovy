@@ -15,11 +15,10 @@ class SetupController {
         def person = Person.findByUser(user) ?: new Person(user: user, firstName: 'John', lastName: 'Doe')
 
         //Create first plan associated with the newly created person
-        def plan = new Plan(label: message(code: 'moneygility.setup.expenses.firstplan.label'))
-        //person.addToPlans(plan)
-        person.activePlan = plan
+        def plan = Plan.findByPerson(person) ?: new Plan(label: message(code: 'moneygility.setup.expenses.firstplan.label'), isActive: true)
+        person.addToPlans(plan)
 
-        //save the whole
+        //save the whole thing
         if (!person.save()) {
             person.errors.each {
                 log.debug(it)
@@ -39,7 +38,7 @@ class SetupController {
         def frequency = new Frequency(code:Frequency.MONTHLY_CODE, cronExpression: '0 1 0 ${params.day} 1/1 ? *')
 
         def operation = new PlannedOperation(amount: amount, label: label, frequency: frequency)
-        operation.save(flush: true)
+        //operation.save()
 
         render template: 'expenseList', model: [operations : PlannedOperation.list()]
     }

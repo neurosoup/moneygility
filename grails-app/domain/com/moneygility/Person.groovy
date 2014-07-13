@@ -7,11 +7,7 @@ class Person {
     static constraints = {
     }
 
-    static hasMany = [operations: PersonalOperation]
-
-    static hasOne = [activePlan: Plan]
-
-    static embedded = ['activePlan']
+    static hasMany = [operations: PersonalOperation, plans: Plan]
 
     String firstName
     String lastName

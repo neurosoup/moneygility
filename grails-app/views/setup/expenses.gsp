@@ -47,7 +47,7 @@
 
 
                     <div class="form-group">
-                        <input type="number" class="form-control" name="amount"
+                        <input type="text" class="form-control" name="amount"
                                placeholder="${message(code: 'moneygility.setup.expenses.addoperation.amount.label')}"/>
                     </div>
 
@@ -136,7 +136,7 @@
                             message: "${message(code: 'moneygility.setup.expenses.addoperation.amount.mandatory')}"
                         },
                         regexp: {
-                            regexp: /^\d$/,
+                            regexp: /^\d+$/,
                             message: "${message(code: 'moneygility.setup.expenses.addoperation.amount.mustbeanumber')}"
                         }
                     }

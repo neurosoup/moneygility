@@ -10,5 +10,6 @@ class Plan {
     static hasMany = [operations: PlannedOperation]
 
     String label
+    Boolean isActive
 
 }
