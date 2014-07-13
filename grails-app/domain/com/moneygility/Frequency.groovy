@@ -11,7 +11,7 @@ class Frequency {
     static constraints = {
     }
 
-    static belongsTo = [operation: Operation]
+    //static belongsTo = [operation: Operation] is embedded in operation
 
     String code
     String cronExpression //http://www.cronmaker.com

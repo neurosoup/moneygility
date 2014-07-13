@@ -7,15 +7,14 @@ class Person {
     static constraints = {
     }
 
-    static hasMany = [operations: PersonalOperation, plans: Plan]
+    static hasMany = [operations: PersonalOperation]
 
-    static mapping = {
-        plans batchSize: 10
-    }
+    static hasOne = [activePlan: Plan]
+
+    static embedded = ['activePlan']
 
     String firstName
     String lastName
-    Plan activePlan
     User user
 
 }

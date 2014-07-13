@@ -1,5 +1,7 @@
 package com.moneygility
 
+import com.moneygility.security.User
+
 class SetupController {
 
     def springSecurityService
@@ -10,11 +12,11 @@ class SetupController {
 
         //Create default person associated with the current login
         //Have to add a new screen for choosing personal information
-        def person = Person.findByUser(user) ?: new Person(user: user)
+        def person = Person.findByUser(user) ?: new Person(user: user, firstName: 'John', lastName: 'Doe')
 
         //Create first plan associated with the newly created person
         def plan = new Plan(label: message(code: 'moneygility.setup.expenses.firstplan.label'))
-        person.addToPlans(plan)
+        //person.addToPlans(plan)
         person.activePlan = plan
 
         //save the whole
@@ -23,7 +25,6 @@ class SetupController {
                 log.debug(it)
             }
         }
-        person.save(flush: true)
 
         //Go to the first step of setup
         render view: 'expenses'

@@ -6,4 +6,5 @@ class PlannedOperation extends Operation {
     }
 
     static belongsTo = [plan: Plan]
+
 }
