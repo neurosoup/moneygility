@@ -146,8 +146,12 @@
             fields: {
                 label : {
                     validators: {
-                        notEmpty: {
-                            message: "${message(code: 'moneygility.setup.expenses.label.mandatory')}"
+                        remote: {
+                            message: "${message(code: 'moneygility.setup.expenses.label.mandatory')}",
+                            url: '${createLink(action: 'validate')}',
+                            data: {
+                                type: 'label'
+                            }
                         }
                     }
                 },

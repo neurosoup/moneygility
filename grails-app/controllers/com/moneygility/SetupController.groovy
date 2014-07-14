@@ -31,6 +31,14 @@ class SetupController {
 
     def expenses() {}
 
+    def validate() {
+        def p = params
+        def isvalid = false
+        render(contentType: 'text/json') {[
+                'valid': isvalid
+        ]}
+    }
+
     def addoperation() {
         def amount = params.amount
         def label = params.label
