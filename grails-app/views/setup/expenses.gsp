@@ -62,6 +62,21 @@
                                         optionKey="code"
                                         valueMessagePrefix="moneygility.frequency"/>
                             </div>
+
+                            <div class="col-sm-3">
+                                <div class="input-group">
+                                    <input id="day" name="day" type="text" class="form-control">
+
+                                    <div class="input-group-btn">
+                                        <button id="dayselect" type="button" class="btn btn-default popover-dismiss"
+                                                data-toggle="popover" data-placement="right"><span
+                                                class="glyphicon glyphicon-th"></span></span>
+                                        </button>
+                                        <g:render template="/components/daySelector"/>
+                                    </div><!-- /btn-group -->
+                                </div><!-- /input-group -->
+
+                            </div>
                         </div>
 
                     </div>
@@ -113,6 +128,13 @@
         $('#username').focus();
 
         $('.selectpicker').selectpicker();
+
+        $("#dayselect").popover({
+            html : true,
+            content: function() {
+                return $('.day-selector-content').html();
+            }
+        });
 
         $('#registerForm').bootstrapValidator({
             message: '',

@@ -21,6 +21,7 @@ modules = {
 
     forms {
         dependsOn 'bootstrapValidator, bootstrapSelect'
+        resource url: [dir: 'css', file: 'forms.css']
     }
 
     intro {

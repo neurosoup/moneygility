@@ -1,0 +1,21 @@
+
+.day-selector-content {
+    display: none;
+}
+.day-selector {
+    min-width: 269px;
+}
+
+.day-selector .btn-default {
+    border-radius: 3px;
+    border: 0;
+    padding: 3px 6px;
+    min-width: 28px;
+    margin-bottom: 3px;
+}
+
+.day-selector .btn-default:hover, .btn-default:focus {
+    color: #ffffff;
+    background-color: #428ac9;
+
+}

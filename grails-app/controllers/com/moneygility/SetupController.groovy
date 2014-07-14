@@ -31,15 +31,15 @@ class SetupController {
 
     def expenses() {}
 
-    def addoperation()
-    {
+    def addoperation() {
         def amount = params.amount
         def label = params.label
-        def frequency = new Frequency(code:Frequency.MONTHLY_CODE, cronExpression: '0 1 0 ${params.day} 1/1 ? *')
+        def day = params.day == '30/31' ? 'L' : params.day
+        def frequency = new Frequency(code: Frequency.MONTHLY_CODE, cronExpression: "0 1 0 ${day} 1/1 ? *")
 
         def operation = new PlannedOperation(amount: amount, label: label, frequency: frequency)
-        //operation.save()
+        operation.save()
 
-        render template: 'expenseList', model: [operations : PlannedOperation.list()]
+        render template: 'expenseList', model: [operations: PlannedOperation.list()]
     }
 }
