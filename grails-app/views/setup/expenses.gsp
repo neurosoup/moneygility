@@ -41,8 +41,8 @@
                 <g:form role="form" name='registerForm' action="addoperation">
 
                     <div class="form-group">
-                        <g:textField name="label" class="form-control"
-                                     placeholder="${message(code: 'moneygility.setup.expenses.addoperation.label')}"/>
+                        <input type="text" class="form-control" name="label"
+                               placeholder="${message(code: 'moneygility.setup.expenses.addoperation.label')}"/>
                     </div>
 
 
@@ -72,7 +72,8 @@
                                                 data-toggle="popover" data-placement="right"><span
                                                 class="glyphicon glyphicon-th"></span></span>
                                         </button>
-                                        <g:render template="/components/daySelector"/>
+                                        <g:render template="/components/daySelector"
+                                                  model="[triggerId: 'dayselect', inputId: 'day']"/>
                                     </div><!-- /btn-group -->
                                 </div><!-- /input-group -->
 
@@ -84,6 +85,7 @@
                     <div class="form-group">
 
                         <g:submitToRemote
+                                id="btnaddoperation"
                                 url="[action: 'addoperation']"
                                 class="btn btn-primary btn-lg btn-block"
                                 update="operations"
@@ -127,6 +129,8 @@
 
         $('#username').focus();
 
+        //$('#btnaddoperation').prop('disabled', true);
+
         $('.selectpicker').selectpicker();
 
         $("#dayselect").popover({
@@ -146,13 +150,16 @@
             fields: {
                 label : {
                     validators: {
+                        notEmpty: {
+                            message: "${message(code: 'moneygility.setup.expenses.label.mandatory')}"
+                        }/*,
                         remote: {
                             message: "${message(code: 'moneygility.setup.expenses.label.mandatory')}",
                             url: '${createLink(action: 'validate')}',
                             data: {
-                                type: 'label'
+                                field: 'label'
                             }
-                        }
+                        }*/
                     }
                 },
                 amount: {

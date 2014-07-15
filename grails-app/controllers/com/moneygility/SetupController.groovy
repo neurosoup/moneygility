@@ -34,6 +34,10 @@ class SetupController {
     def validate() {
         def p = params
         def isvalid = false
+
+        if (p.label)
+            isvalid = true
+
         render(contentType: 'text/json') {[
                 'valid': isvalid
         ]}

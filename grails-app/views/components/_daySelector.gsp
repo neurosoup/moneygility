@@ -14,8 +14,8 @@
 <g:javascript>
 
     var validate = function (e) {
-        $("#dayselect").popover('hide');
-        $("#day").val(e.data("value"));
+        $("#${triggerId}").popover('hide');
+        $("#${inputId}").val(e.data("value"));
     };
 
 </g:javascript>
