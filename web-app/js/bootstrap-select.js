@@ -1,4 +1,5 @@
 /*!
+/*!
  * bootstrap-select v1.5.4
  * http://silviomoreto.github.io/bootstrap-select/
  *

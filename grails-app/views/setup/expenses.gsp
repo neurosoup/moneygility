@@ -38,7 +38,7 @@
         <div class="row">
             <div class="col-sm-4 col-sm-offset-2">
 
-                <g:form role="form" name='registerForm' action="addoperation">
+                <g:form role="form" name='addOperationForm' action="addoperation">
 
                     <div class="form-group">
                         <input type="text" class="form-control" name="label"
@@ -63,7 +63,7 @@
                                         valueMessagePrefix="moneygility.frequency"/>
                             </div>
 
-                            <div class="col-sm-3">
+                            <div class="col-sm-4">
                                 <div class="input-group">
                                     <input id="day" name="day" type="text" class="form-control">
 
@@ -129,9 +129,11 @@
 
         $('#username').focus();
 
-        //$('#btnaddoperation').prop('disabled', true);
+        $('#btnaddoperation').prop('disabled', true);
 
-        $('.selectpicker').selectpicker();
+        $('.selectpicker').selectpicker({
+            style: 'btn-default'
+        });
 
         $("#dayselect").popover({
             html : true,
@@ -140,7 +142,10 @@
             }
         });
 
-        $('#registerForm').bootstrapValidator({
+        $('#addOperationForm').bootstrapValidator({
+            onerror: function(e) {
+                alert('error');
+            },
             message: '',
             feedbackIcons: {
                 valid: 'glyphicon glyphicon-ok',
@@ -175,6 +180,13 @@
                     }
                 }
             }
+        })
+        .on('error.form.bv', function(e) {
+            alert('error');
+            $('#btnaddoperation').prop('disabled', true);
+        })
+        .on('success.form.bv', function(e) {
+            $('#btnaddoperation').prop('disabled', true);
         });
 
     });

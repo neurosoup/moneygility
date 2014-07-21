@@ -19,3 +19,7 @@
     background-color: #428ac9;
 
 }
+
+.bootstrap-select > .btn {
+    width: auto;
+}
