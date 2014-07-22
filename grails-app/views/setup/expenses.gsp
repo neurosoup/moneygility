@@ -65,7 +65,7 @@
 
                             <div class="col-sm-4">
                                 <div class="input-group">
-                                    <input id="day" name="day" type="text" class="form-control">
+                                    <input id="day" name="day" type="text" class="form-control" placeholder="${message(code: 'moneygility.setup.expenses.addoperation.day')}">
 
                                     <div class="input-group-btn">
                                         <button id="dayselect" type="button" class="btn btn-default popover-dismiss"
@@ -91,7 +91,7 @@
                                 update="operations"
                                 value="${message(code: 'moneygility.setup.expenses.addoperation.submit')}"/>
 
-                        <div class="spacer-small"></div>
+                        %{--<div class="spacer-small"></div>--}%
 
                         %{--<g:actionSubmit action="income"
                                         name="${message(code: 'moneygility.setup.expenses.nomoreoperation')}"
@@ -129,8 +129,6 @@
 
         $('#username').focus();
 
-        $('#btnaddoperation').prop('disabled', true);
-
         $('.selectpicker').selectpicker({
             style: 'btn-default'
         });
@@ -142,10 +140,11 @@
             }
         });
 
+        $('#btnaddoperation').prop('disabled', true);
         $('#addOperationForm').bootstrapValidator({
-            onerror: function(e) {
-                alert('error');
-            },
+            trigger: 'keyup',
+            live: 'enabled',
+            submitButtons: '#btnaddoperation',
             message: '',
             feedbackIcons: {
                 valid: 'glyphicon glyphicon-ok',
@@ -160,7 +159,7 @@
                         }/*,
                         remote: {
                             message: "${message(code: 'moneygility.setup.expenses.label.mandatory')}",
-                            url: '${createLink(action: 'validate')}',
+                              url: '${createLink(action: 'validate')}',
                             data: {
                                 field: 'label'
                             }
@@ -180,13 +179,6 @@
                     }
                 }
             }
-        })
-        .on('error.form.bv', function(e) {
-            alert('error');
-            $('#btnaddoperation').prop('disabled', true);
-        })
-        .on('success.form.bv', function(e) {
-            $('#btnaddoperation').prop('disabled', true);
         });
 
     });
