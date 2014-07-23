@@ -41,7 +41,7 @@
                 <g:form role="form" name='addOperationForm' action="addoperation">
 
                     <div class="form-group">
-                        <input type="text" class="form-control" name="label"
+                        <input type="text" class="form-control" name="label" required="true"
                                placeholder="${message(code: 'moneygility.setup.expenses.addoperation.label')}"/>
                     </div>
 
@@ -63,9 +63,9 @@
                                         valueMessagePrefix="moneygility.frequency"/>
                             </div>
 
-                            <div class="col-sm-4">
+                            <div class="col-sm-6">
                                 <div class="input-group">
-                                    <input id="day" name="day" type="text" class="form-control" placeholder="${message(code: 'moneygility.setup.expenses.addoperation.day')}">
+                                    <input id="day" name="day" type="text" value="1" class="form-control" placeholder="${message(code: 'moneygility.setup.expenses.addoperation.dayinmonth')}">
 
                                     <div class="input-group-btn">
                                         <button id="dayselect" type="button" class="btn btn-default popover-dismiss"
@@ -141,12 +141,28 @@
         });
 
         $('#btnaddoperation').prop('disabled', true);
-        $('#addOperationForm').bootstrapValidator({
-            trigger: 'keyup',
-            live: 'enabled',
+        $('#addOperationForm')
+        .on('init.field.bv', function(e, data) {
+            // data.bv      --> The BootstrapValidator instance
+            // data.field   --> The field name
+            // data.element --> The field element
+
+            var $parent    = data.element.parents('.form-group'),
+                $icon      = $parent.find('.form-control-feedback[data-bv-icon-for="' + data.field + '"]'),
+                options    = data.bv.getOptions(),                      // Entire options
+                validators = data.bv.getOptions(data.field).validators; // The field validators
+
+            if (validators.notEmpty && options.feedbackIcons && options.feedbackIcons.required) {
+                // The field uses notEmpty validator
+                // Add required icon
+                $icon.addClass(options.feedbackIcons.required).show();
+            }
+        })
+        .bootstrapValidator({
             submitButtons: '#btnaddoperation',
             message: '',
             feedbackIcons: {
+                required: 'glyphicon glyphicon-asterisk',
                 valid: 'glyphicon glyphicon-ok',
                 invalid: 'glyphicon glyphicon-remove',
                 validating: 'glyphicon glyphicon-refresh'
@@ -178,6 +194,17 @@
                         }
                     }
                 }
+            }
+        })
+        .on('status.field.bv', function(e, data) {
+            // Remove the required icon when the field updates its status
+            var $parent    = data.element.parents('.form-group'),
+                $icon      = $parent.find('.form-control-feedback[data-bv-icon-for="' + data.field + '"]'),
+                options    = data.bv.getOptions(),                      // Entire options
+                validators = data.bv.getOptions(data.field).validators; // The field validators
+
+            if (validators.notEmpty && options.feedbackIcons && options.feedbackIcons.required) {
+                $icon.removeClass(options.feedbackIcons.required).addClass('glyphicon');
             }
         });
 
