@@ -1,6 +1,7 @@
 package com.moneygility
 
 import grails.plugins.quartz.TriggerUtils
+import groovy.time.TimeCategory
 import org.quartz.impl.calendar.BaseCalendar
 import org.quartz.spi.OperableTrigger
 
@@ -24,13 +25,22 @@ class Frequency {
     def List<Date> computeFireTimes() {
         def t = TriggerUtils.buildCronTrigger(code, this.class.name, cronExpression)
 
-        def timeZone = TimeZone.getTimeZone("Europe/Paris")
+        /*def timeZone = TimeZone.getTimeZone("Europe/Paris")
         def locale = Locale.FRANCE
         def past = GregorianCalendar.getInstance(timeZone, locale)
         past.add(Calendar.YEAR, -2)
         def future = GregorianCalendar.getInstance(timeZone, locale)
         future.add(Calendar.YEAR, 5)
+        def start = past.getTime()
+        def end = future.getTime()*/
 
-        org.quartz.TriggerUtils.computeFireTimesBetween(t as OperableTrigger, new BaseCalendar(timeZone), past.getTime(), future.getTime())
+        def now = new Date()
+
+        use(TimeCategory) {
+            def start = now - 1.month
+            def end = now + 1.years
+            return org.quartz.TriggerUtils.computeFireTimesBetween(t as OperableTrigger, new BaseCalendar(timeZone), start, end)
+        }
+
     }
 }

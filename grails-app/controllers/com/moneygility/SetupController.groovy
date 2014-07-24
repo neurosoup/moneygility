@@ -18,12 +18,7 @@ class SetupController {
         def plan = Plan.findByPerson(person) ?: new Plan(label: message(code: 'moneygility.setup.expenses.firstplan.label'), isActive: true)
         person.addToPlans(plan)
 
-        //save the whole thing
-        if (!person.save()) {
-            person.errors.each {
-                log.debug(it)
-            }
-        }
+        person.save()
 
         //Go to the first step of setup
         render view: 'expenses'
@@ -46,10 +41,12 @@ class SetupController {
     def addoperation() {
         def amount = params.amount
         def label = params.label
-        def day = params.day == '30/31' ? 'L' : params.day
+        def day = params.day ? params.day == '30/31' ? 'L' : params.day : 5
         def frequency = new Frequency(code: Frequency.MONTHLY_CODE, cronExpression: "0 1 0 ${day} 1/1 ? *")
+        def person = Person.findByUser(springSecurityService.currentUser)
+        def plan = Plan.findByPersonAndIsActive(person, true)
 
-        def operation = new PlannedOperation(amount: amount, label: label, frequency: frequency)
+        def operation = new PlannedOperation(amount: amount, label: label, frequency: frequency, plan: plan)
         operation.save()
 
         render template: 'expenseList', model: [operations: PlannedOperation.list()]

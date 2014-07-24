@@ -1,4 +1,4 @@
-<%@ page import="com.moneygility.Operation" %>
+<%@ page import="com.moneygility.OperationTemplate" %>
 
 <html>
 
@@ -58,7 +58,7 @@
                                 <g:select
                                         class="selectpicker" data-title="Fréquence"
                                         name="frequency"
-                                        from="${Operation.list().frequency}"
+                                        from="${OperationTemplate.list().frequency}"
                                         optionKey="code"
                                         valueMessagePrefix="moneygility.frequency"/>
                             </div>
