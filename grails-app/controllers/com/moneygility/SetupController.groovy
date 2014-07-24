@@ -15,13 +15,13 @@ class SetupController {
         def person = Person.findByUser(user) ?: new Person(user: user, firstName: 'John', lastName: 'Doe')
 
         //Create first plan associated with the newly created person
-        def plan = Plan.findByPerson(person) ?: new Plan(label: message(code: 'moneygility.setup.expenses.firstplan.label'), isActive: true)
-        person.addToPlans(plan)
+        def plan = person.plans.find {it.isActive}.first() ?: new Plan(label: message(code: 'moneygility.setup.expenses.firstplan.label'), isActive: true)
+        person.plans.add(plan)
 
         person.save()
 
         //Go to the first step of setup
-        render view: 'expenses'
+        render view: 'expenses', model: [operations: plan.operations]
     }
 
     def expenses() {}
@@ -44,11 +44,11 @@ class SetupController {
         def day = params.day ? params.day == '30/31' ? 'L' : params.day : 5
         def frequency = new Frequency(code: Frequency.MONTHLY_CODE, cronExpression: "0 1 0 ${day} 1/1 ? *")
         def person = Person.findByUser(springSecurityService.currentUser)
-        def plan = Plan.findByPersonAndIsActive(person, true)
+        def plan = person.plans.find {it.isActive}.first()
+        def operation = new PlannedOperation(amount: amount, label: label, frequency: frequency)
+        plan.operations.add(operation)
+        person.save()
 
-        def operation = new PlannedOperation(amount: amount, label: label, frequency: frequency, plan: plan)
-        operation.save()
-
-        render template: 'expenseList', model: [operations: PlannedOperation.list()]
+        render template: 'expenseList', model: [operations: plan.operations]
     }
 }

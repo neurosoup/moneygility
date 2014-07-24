@@ -16,7 +16,7 @@
         <h2 class="text-center"><g:message code='spring.security.ui.forgotPassword.header'/></h2>
     </div>
 
-    <div class="row login-action">
+    <div class="row action-area">
         <div class="row">
             <div class="col-sm-4 col-sm-offset-4">
                 <p><g:message code='spring.security.ui.forgotPassword.description'/></p>

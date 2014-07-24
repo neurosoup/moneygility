@@ -1,4 +1,4 @@
-<%@ page import="com.moneygility.OperationTemplate" %>
+<%@ page import="com.moneygility.Plan; com.moneygility.PlannedOperation; com.moneygility.OperationTemplate" %>
 
 <html>
 
@@ -25,7 +25,7 @@
 
     </div>
 
-    <div class="row login-action">
+    <div class="row action-area">
 
         <div class="row">
             <div class="col-sm-8 col-sm-offset-2">
@@ -58,14 +58,15 @@
                                 <g:select
                                         class="selectpicker" data-title="Fréquence"
                                         name="frequency"
-                                        from="${OperationTemplate.list().frequency}"
+                                        from="${OperationTemplate.findByKind('frequency').frequency}"
                                         optionKey="code"
                                         valueMessagePrefix="moneygility.frequency"/>
                             </div>
 
                             <div class="col-sm-6">
                                 <div class="input-group">
-                                    <input id="day" name="day" type="text" value="1" class="form-control" placeholder="${message(code: 'moneygility.setup.expenses.addoperation.dayinmonth')}">
+                                    <input id="day" name="day" type="text" value="1" class="form-control"
+                                           placeholder="${message(code: 'moneygility.setup.expenses.addoperation.dayinmonth')}">
 
                                     <div class="input-group-btn">
                                         <button id="dayselect" type="button" class="btn btn-default popover-dismiss"
@@ -113,7 +114,7 @@
 
                     <div class="col-sm-10">
                         <div id="operations">
-                            <p>Will be updated</p>
+                            <g:render template="expenseList"/>
                         </div>
                     </div>
                 </div>
@@ -125,7 +126,13 @@
 </div>
 
 <g:javascript>
+
+    function removeOperation(id) {
+        alert('supprimé ' + id);
+    }
+
     $(document).ready(function () {
+
 
         $('#username').focus();
 

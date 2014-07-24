@@ -14,7 +14,7 @@
         <h2 class="text-center"><g:message code='springSecurity.login.header'/></h2>
     </div>
 
-    <div class="row login-action">
+    <div class="row action-area">
         %{--<div class="col-sm-4 col-sm-offset-1">
 
         </div>--}%

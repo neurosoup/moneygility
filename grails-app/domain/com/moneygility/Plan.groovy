@@ -5,11 +5,13 @@ class Plan {
     static constraints = {
     }
 
-    static belongsTo = [person: Person]
+    //static belongsTo = [person: Person]
 
-    static hasMany = [operations: PlannedOperation]
+    //static hasMany = [operations: PlannedOperation]
+    static embedded = ['operations']
 
     String label
     Boolean isActive
+    List<PlannedOperation> operations
 
 }

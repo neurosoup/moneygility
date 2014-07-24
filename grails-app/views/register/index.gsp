@@ -15,7 +15,7 @@
         <h2 class="text-center"><g:message code='spring.security.ui.register.description'/></h2>
     </div>
 
-    <div class="row login-action">
+    <div class="row action-area">
         <div class="col-sm-4 col-sm-offset-4">
             <g:form role="form" action='register' name='registerForm'>
                 <g:if test='${emailSent}'>

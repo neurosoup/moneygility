@@ -11,6 +11,6 @@ class PlannedOperation {
 
     static embedded = ['frequency']
 
-    static belongsTo = [plan: Plan]
+    //static belongsTo = [plan: Plan]
 
 }
