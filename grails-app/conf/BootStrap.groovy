@@ -8,12 +8,7 @@ class BootStrap {
         //Add the default frequencies
         if (!OperationTemplate.findByLabel(Frequency.MONTHLY_CODE)) {
             def operation = new OperationTemplate(label: Frequency.MONTHLY_CODE, kind: 'frequency', frequency: Frequency.getMonthly(1))
-
-            if (!operation.save()) {
-                operation.errors.each {
-                    log.debug(it)
-                }
-            }
+            operation.save()
         }
 
     }

@@ -1,4 +1,4 @@
-<%@ page import="com.moneygility.Plan; com.moneygility.PlannedOperation; com.moneygility.OperationTemplate" %>
+<%@ page import="com.moneygility.OperationTemplate" %>
 
 <html>
 
@@ -65,13 +65,13 @@
 
                             <div class="col-sm-6">
                                 <div class="input-group">
-                                    <input id="day" name="day" type="text" value="1" class="form-control"
+                                    <input id="day" name="day" type="text" value="${grailsApplication.config.moneygility.operations.periodic.startday}" class="form-control"
                                            placeholder="${message(code: 'moneygility.setup.expenses.addoperation.dayinmonth')}">
 
                                     <div class="input-group-btn">
                                         <button id="dayselect" type="button" class="btn btn-default popover-dismiss"
                                                 data-toggle="popover" data-placement="right"><span
-                                                class="glyphicon glyphicon-th"></span></span>
+                                                class="glyphicon glyphicon-th"></span>
                                         </button>
                                         <g:render template="/components/daySelector"
                                                   model="[triggerId: 'dayselect', inputId: 'day']"/>

@@ -165,3 +165,5 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
         "/j_spring_security_facebook_redirect": ["IS_AUTHENTICATED_ANONYMOUSLY"],
         "/j_spring_security_facebook_check":    ["IS_AUTHENTICATED_ANONYMOUSLY"]
 ]
+
+grails.moneygility.operations.periodic.startday = 5

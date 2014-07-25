@@ -5,7 +5,7 @@ class Plan {
     static constraints = {
     }
 
-    //static belongsTo = [person: Person]
+    static belongsTo = [person: Person]
 
     //static hasMany = [operations: PlannedOperation]
     static embedded = ['operations']

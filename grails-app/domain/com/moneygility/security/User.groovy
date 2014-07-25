@@ -1,7 +1,5 @@
 package com.moneygility.security
 
-import com.moneygility.Person
-
 class User {
 
 	transient springSecurityService
