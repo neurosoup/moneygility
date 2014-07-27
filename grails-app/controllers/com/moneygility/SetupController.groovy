@@ -37,10 +37,11 @@ class SetupController {
         def amount = params.amount
         def label = params.label
         def day = params.day ? params.day == '30/31' ? 'L' : params.day : grailsApplication.config.moneygility.operations.periodic.startday
+        def plan = Plan.get(params.planId)
 
         def frequency = new Frequency(code: Frequency.MONTHLY_CODE, cronExpression: "0 1 0 ${day} 1/1 ? *")
 
-        def plan = flash.plan
+
         def operation = new PlannedOperation(amount: amount, label: label, frequency: frequency)
         plan.operations.add(operation)
         plan.save()

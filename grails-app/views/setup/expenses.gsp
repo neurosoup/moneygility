@@ -40,6 +40,8 @@
 
                 <g:form role="form" name='addOperationForm' action="addoperation">
 
+                    <input type="hidden" name="planId" value="${plan.id}" />
+
                     <div class="form-group">
                         <input type="text" class="form-control" name="label" required="true"
                                placeholder="${message(code: 'moneygility.setup.expenses.addoperation.label')}"/>
@@ -90,7 +92,8 @@
                                 url="[action: 'addoperation']"
                                 class="btn btn-primary btn-lg btn-block"
                                 update="operations"
-                                value="${message(code: 'moneygility.setup.expenses.addoperation.submit')}"/>
+                                value="${message(code: 'moneygility.setup.expenses.addoperation.submit')}"
+                                onSuccess="initForm()"/>
 
                         %{--<div class="spacer-small"></div>--}%
 
@@ -131,10 +134,19 @@
         alert('supprimé ' + id);
     }
 
+    function initForm() {
+
+        $('input[name=label]').val("");
+        $('input[name=amount]').val("");
+        $('input[name=day]').val("5");
+        //$('#addOperationForm').bootstrapValidator('resetForm');
+        $('#username').focus();
+        $('#expensesList').sortable();
+    }
+
     $(document).ready(function () {
 
-
-        $('#username').focus();
+        initForm();
 
         $('.selectpicker').selectpicker({
             style: 'btn-default'
