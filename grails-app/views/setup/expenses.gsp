@@ -89,11 +89,11 @@
 
                         <g:submitToRemote
                                 id="btnaddoperation"
-                                url="[action: 'addoperation']"
+                                url="[action: 'addOperation']"
                                 class="btn btn-primary btn-lg btn-block"
                                 update="operations"
                                 value="${message(code: 'moneygility.setup.expenses.addoperation.submit')}"
-                                onSuccess="initForm()"/>
+                                onSuccess="resetFields()"/>
 
                         %{--<div class="spacer-small"></div>--}%
 
@@ -117,7 +117,7 @@
 
                     <div class="col-sm-10">
                         <div id="operations">
-                            <g:render template="expenseList"/>
+                            <g:render template="/components/monthOperations"/>
                         </div>
                     </div>
                 </div>
@@ -130,23 +130,17 @@
 
 <g:javascript>
 
-    function removeOperation(id) {
-        alert('supprimé ' + id);
-    }
 
-    function initForm() {
-
+    function resetFields() {
         $('input[name=label]').val("");
         $('input[name=amount]').val("");
         $('input[name=day]').val("5");
-        //$('#addOperationForm').bootstrapValidator('resetForm');
         $('#username').focus();
-        $('#expensesList').sortable();
     }
 
     $(document).ready(function () {
 
-        initForm();
+        resetFields();
 
         $('.selectpicker').selectpicker({
             style: 'btn-default'

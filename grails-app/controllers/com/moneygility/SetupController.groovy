@@ -5,18 +5,15 @@ import com.moneygility.security.User
 class SetupController {
 
     def springSecurityService
+    def plannedOperationService
 
     def index() {
 
-        def user = springSecurityService.currentUser
+        def user = springSecurityService.currentUser as User
 
         //Create default person associated with the current login
         //Have to add a new screen for choosing personal information
-        def person = Person.findByUser(user)
-
-        if (!person) {
-            person = new Person(user: user, firstName: 'John', lastName: 'Doe')
-        }
+        def person = Person.findByUser(user) ?: new Person(user: user, firstName: 'John', lastName: 'Doe')
 
         //Create first plan associated with the newly created person
         def plan = Plan.findByPersonAndIsActive(person, true)
@@ -28,24 +25,27 @@ class SetupController {
         }
 
         //Go to the first step of setup
-        render view: 'expenses', model: [plan: plan]
+        render view: 'expenses', model: [plan: plan, deleteAction: 'deleteOperation']
     }
 
     def expenses() {}
 
-    def addoperation() {
-        def amount = params.amount
-        def label = params.label
-        def day = params.day ? params.day == '30/31' ? 'L' : params.day : grailsApplication.config.moneygility.operations.periodic.startday
-        def plan = Plan.get(params.planId)
+    def addOperation() {
 
-        def frequency = new Frequency(code: Frequency.MONTHLY_CODE, cronExpression: "0 1 0 ${day} 1/1 ? *")
+        BigDecimal amount = params.int('amount').toBigDecimal()
+        String label = params.label
+        String day = params.day ? params.day == '30/31' ? 'L' : params.day : grailsApplication.config.moneygility.operations.periodic.startday
+        String frequencyCode = params.frequency
+        Plan plan = Plan.get(params.int('planId'))
 
+        plannedOperationService.add plan, amount, label, frequencyCode, day
 
-        def operation = new PlannedOperation(amount: amount, label: label, frequency: frequency)
-        plan.operations.add(operation)
-        plan.save()
+        render template: '/components/monthOperations', model: [plan: plan, deleteAction: 'deleteOperation']
+    }
 
-        render template: 'expenseList', model: [plan: plan]
+    def deleteOperation() {
+
+        int id = params.int('id')
+        plannedOperationService.delete(id)
     }
 }

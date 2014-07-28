@@ -12,14 +12,23 @@ class Frequency {
     static constraints = {
     }
 
-    //static belongsTo = [operation: Operation] is embedded in operation
-
     String code
     String cronExpression //http://www.cronmaker.com
 
 
-    static def getMonthly(int day) {
+    static def getMonthly(String day) {
         new Frequency(code: MONTHLY_CODE, cronExpression: "0 0 1 ${day} 1/1 ? *")
+    }
+
+    static def getByCodeAndDay(String code, String day) {
+        switch (code) {
+            case MONTHLY_CODE:
+                getMonthly(day)
+            break
+            default:
+                getMonthly(day)
+            break
+        }
     }
 
     def List<Date> computeFireTimes() {

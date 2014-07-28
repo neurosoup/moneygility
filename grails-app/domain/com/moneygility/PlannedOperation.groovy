@@ -9,8 +9,8 @@ class PlannedOperation {
     BigDecimal amount
     Frequency frequency
 
-    static embedded = ['frequency']
+    static belongsTo = [plan: Plan]
 
-    //static belongsTo = [plan: Plan]
+    static embedded = ['frequency']
 
 }

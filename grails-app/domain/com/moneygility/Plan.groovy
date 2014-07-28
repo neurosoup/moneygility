@@ -7,11 +7,9 @@ class Plan {
 
     static belongsTo = [person: Person]
 
-    //static hasMany = [operations: PlannedOperation]
-    static embedded = ['operations']
+    static hasMany = [operations: PlannedOperation]
 
     String label
     Boolean isActive
-    List<PlannedOperation> operations
 
 }
