@@ -3,11 +3,18 @@ package com.moneygility
 import grails.plugins.quartz.TriggerUtils
 import groovy.time.TimeCategory
 import org.quartz.impl.calendar.BaseCalendar
+import org.quartz.impl.triggers.CronTriggerImpl
 import org.quartz.spi.OperableTrigger
+
+import javax.persistence.Transient
 
 class Frequency {
 
+    def frequencyService
+
     public static final String MONTHLY_CODE = "monthly"
+
+    static transients = ['day, cronTrigger, calendar']
 
     static constraints = {
     }
@@ -15,6 +22,14 @@ class Frequency {
     String code
     String cronExpression //http://www.cronmaker.com
 
+    def getDay() {
+        org.quartz.CronExpression expr = new org.quartz.CronExpression(this.cronExpression)
+        def nextDate = expr.getNextValidTimeAfter(new Date())
+        /*def cronTrigger = frequencyService.buildCronTrigger(this)
+        def nextDate = ((CronTriggerImpl) cronTrigger).cronEx.getNextValidTimeAfter(new  Date())*/
+        frequencyService.calendar.setTime(nextDate);
+        frequencyService.calendar.get(Calendar.DAY_OF_MONTH);
+    }
 
     static def getMonthly(String day) {
         new Frequency(code: MONTHLY_CODE, cronExpression: "0 0 1 ${day} 1/1 ? *")

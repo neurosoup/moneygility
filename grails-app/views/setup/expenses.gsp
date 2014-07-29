@@ -4,6 +4,7 @@
 
 <head>
     <meta name='layout' content='intro'/>
+    <r:require module="operations"/>
     <r:require module="intro"/>
     <r:require module="forms"/>
     <title><g:message code='moneygility.setup.expenses.title'/></title>
@@ -111,7 +112,6 @@
                 <div class="row">
                     <div class="col-sm-1">
                         <div class="vertical-divider hidden-xs"></div>
-
                         <div class="horizontal-divider visible-xs"></div>
                     </div>
 

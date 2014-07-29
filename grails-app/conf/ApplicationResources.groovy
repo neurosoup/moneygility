@@ -28,4 +28,9 @@ modules = {
         dependsOn 'common'
         resource url: [dir: 'css', file: 'intro.css']
     }
+
+    operations {
+        dependsOn 'common'
+        resource url: [dir: 'css', file: 'operations.css']
+    }
 }

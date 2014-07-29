@@ -7,9 +7,11 @@ class Plan {
 
     static belongsTo = [person: Person]
 
-    static hasMany = [operations: PlannedOperation]
+    static hasMany = [series: Serie]
 
     String label
     Boolean isActive
+    Date startDate
+    Date endDate
 
 }
