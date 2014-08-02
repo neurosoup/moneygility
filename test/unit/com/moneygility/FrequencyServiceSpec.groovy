@@ -2,6 +2,8 @@ package com.moneygility
 
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
+import org.springframework.transaction.PlatformTransactionManager
+import org.springframework.transaction.TransactionStatus
 import spock.lang.Specification
 
 /**
@@ -11,8 +13,6 @@ import spock.lang.Specification
 class FrequencyServiceSpec extends Specification {
 
     def setup() {
-        def mockCalendarService = mockFor(CalendarService, true)
-        service.calendarService = mockCalendarService.createMock()
     }
 
     def cleanup() {
@@ -34,8 +34,8 @@ class FrequencyServiceSpec extends Specification {
 
     void "given a monthly frequency that starts the first day and last one month when service computes fire times then return at least one time"() {
         given:
-        def mockCalendarService = mockFor(CalendarService, true)
-        def calendarService = mockCalendarService.createMock()
+        CalendarService calendarService = new CalendarService()
+        calendarService.transactionManager = Mock(PlatformTransactionManager) { getTransaction(_) >> Mock(TransactionStatus) }
         def code = service.grailsApplication.config.moneygility.frequency.monthly.code
         def day = 1
         def startTime = calendarService.getWhen(2000, 12, 1)
