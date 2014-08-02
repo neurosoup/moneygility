@@ -7,7 +7,7 @@ environments {
                 port = 27017
                 username = "fullUser"
                 password = "Fr@gile+123"
-                databaseName = "fragiledev"
+                databaseName = "moneygility-dev"
             }
         }
     }
@@ -16,9 +16,9 @@ environments {
             mongo {
                 host = "ks313064.kimsufi.com"
                 port = 27017
-                username = "notset"
-                password = "notset"
-                databaseName = "fragiletest"
+                username = "fullUser"
+                password = "Fr@gile+123"
+                databaseName = "moneygility-test"
             }
         }
     }
@@ -27,9 +27,9 @@ environments {
             mongo {
                 host = "ks313064.kimsufi.com"
                 port = 27017
-                username = "blah"
-                password = "blah"
-                databaseName = "fragileprod"
+                username = "fullUser"
+                password = "Fr@gile+123"
+                databaseName = "moneygility"
             }
         }
     }

@@ -1,5 +1,4 @@
-<%@ page import="com.moneygility.OperationTemplate" %>
-
+<%@ page import="com.moneygility.Frequency" %>
 <html>
 
 <head>
@@ -61,14 +60,14 @@
                                 <g:select
                                         class="selectpicker" data-title="Fréquence"
                                         name="frequency"
-                                        from="${OperationTemplate.findByKind('frequency').frequency}"
+                                        from="${Frequency.list()}"
                                         optionKey="code"
                                         valueMessagePrefix="moneygility.frequency"/>
                             </div>
 
                             <div class="col-sm-6">
                                 <div class="input-group">
-                                    <input id="day" name="day" type="text" value="${grailsApplication.config.moneygility.operations.periodic.startday}" class="form-control"
+                                    <input id="day" name="day" type="text" value="${grailsApplication.config.moneygility.frequency.monthly.day}" class="form-control"
                                            placeholder="${message(code: 'moneygility.setup.expenses.addoperation.dayinmonth')}">
 
                                     <div class="input-group-btn">

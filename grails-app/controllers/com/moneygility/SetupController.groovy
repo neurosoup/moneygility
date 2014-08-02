@@ -5,7 +5,8 @@ import com.moneygility.security.User
 class SetupController {
 
     def springSecurityService
-    def plannedOperationService
+    def seriesService
+    def calendarService
 
     def index() {
 
@@ -19,7 +20,18 @@ class SetupController {
         def plan = Plan.findByPersonAndIsActive(person, true)
 
         if (!plan) {
-            plan = new Plan(label: message(code: 'moneygility.setup.expenses.firstplan.label'), isActive: true)
+
+            def past = calendarService.now
+            def future = calendarService.getFromNow(Calendar.YEAR, 2)
+            past.set(Calendar.DAY_OF_MONTH, 1)
+            future.set(Calendar.MONTH, Calendar.DECEMBER)
+
+            plan = new Plan(
+                    label: message(code: 'moneygility.setup.expenses.firstplan.label'),
+                    isActive: true,
+                    startTime: past.getTime(),
+                    endTime: future.getTime())
+
             person.addToPlans(plan)
             person.save()
         }
@@ -38,14 +50,13 @@ class SetupController {
         String frequencyCode = params.frequency
         Plan plan = Plan.get(params.int('planId'))
 
-        plannedOperationService.add plan, amount, label, frequencyCode, day
+        seriesService.create(plan, amount, label, frequencyCode, day)
 
         render template: '/components/monthOperations', model: [plan: plan, deleteAction: 'deleteOperation']
     }
 
     def deleteOperation() {
-
         int id = params.int('id')
-        plannedOperationService.delete(id)
+        seriesService.deleteByOperationId(id)
     }
 }

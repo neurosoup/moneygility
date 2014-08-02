@@ -135,9 +135,9 @@ grails {
     }
 }
 
-grails.plugin.springsecurity.facebook.domain.classname='com.moneygility.security.User'
-grails.plugin.springsecurity.facebook.appId='1419982394950725'
-grails.plugin.springsecurity.facebook.secret='76b7c83ed81837d5eb105d969bb58fb1'
+grails.plugin.springsecurity.facebook.domain.classname = 'com.moneygility.security.User'
+grails.plugin.springsecurity.facebook.appId = '1419982394950725'
+grails.plugin.springsecurity.facebook.secret = '76b7c83ed81837d5eb105d969bb58fb1'
 
 grails.plugin.springsecurity.ui.password.validationRegex = '^.*(?=.*\\d)(?=.*[a-zA-Z])(?=.*[_+!@#$%^&]).*$'
 grails.plugin.springsecurity.ui.register.postRegisterUrl = '/setup'
@@ -148,22 +148,30 @@ grails.plugin.springsecurity.userLookup.authorityJoinClassName = 'com.moneygilit
 grails.plugin.springsecurity.authority.className = 'com.moneygility.security.Role'
 grails.plugin.springsecurity.rejectIfNoRule = true
 grails.plugin.springsecurity.controllerAnnotations.staticRules = [
-        '/'           :                 ['permitAll'],
-        '/landing'    :                 ['permitAll'],
-        '/register/**':                 ['permitAll'],
-        '/**/js/**':                    ['permitAll'],
-        '/**/css/**':                   ['permitAll'],
-        '/**/images/**':                ['permitAll'],
-        '/**/favicon.ico':              ['permitAll'],
-        '/login/**':                    ['permitAll'],
-        '/logout/**':                   ['IS_AUTHENTICATED_REMEMBERED'],
-        '/setup/**':                    ['IS_AUTHENTICATED_FULLY'],
-        '/user/**':                     ['ROLE_ADMIN'],
-        '/role/**':                     ['ROLE_ADMIN'],
-        '/registrationCode/**':         ['ROLE_ADMIN'],
-        '/securityInfo/**':             ['ROLE_ADMIN'],
+        '/'                                   : ['permitAll'],
+        '/landing'                            : ['permitAll'],
+        '/register/**'                        : ['permitAll'],
+        '/**/js/**'                           : ['permitAll'],
+        '/**/css/**'                          : ['permitAll'],
+        '/**/images/**'                       : ['permitAll'],
+        '/**/favicon.ico'                     : ['permitAll'],
+        '/login/**'                           : ['permitAll'],
+        '/logout/**'                          : ['IS_AUTHENTICATED_REMEMBERED'],
+        '/setup/**'                           : ['IS_AUTHENTICATED_FULLY'],
+        '/user/**'                            : ['ROLE_ADMIN'],
+        '/role/**'                            : ['ROLE_ADMIN'],
+        '/registrationCode/**'                : ['ROLE_ADMIN'],
+        '/securityInfo/**'                    : ['ROLE_ADMIN'],
         "/j_spring_security_facebook_redirect": ["IS_AUTHENTICATED_ANONYMOUSLY"],
-        "/j_spring_security_facebook_check":    ["IS_AUTHENTICATED_ANONYMOUSLY"]
+        "/j_spring_security_facebook_check"   : ["IS_AUTHENTICATED_ANONYMOUSLY"]
 ]
 
-grails.moneygility.operations.periodic.startday = 5
+moneygility {
+    frequency {
+        monthly {
+            code = 'monthly'
+            day = '5'
+        }
+
+    }
+}

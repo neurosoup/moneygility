@@ -3,12 +3,15 @@ import com.moneygility.OperationTemplate
 
 class BootStrap {
 
+    def grailsApplication
+    def frequencyService
+
     def init = { servletContext ->
 
         //Add the default frequencies
-        if (!OperationTemplate.findByLabel(Frequency.MONTHLY_CODE)) {
-            def operation = new OperationTemplate(label: Frequency.MONTHLY_CODE, kind: 'frequency', frequency: Frequency.getMonthly(1))
-            operation.save()
+        if (!Frequency.findByCode(grailsApplication.config.moneygility.frequency.monthly.code)) {
+            def frequency = frequencyService.getMonthly()
+            frequency.save()
         }
 
     }
