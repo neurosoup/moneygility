@@ -1,5 +1,7 @@
 package com.moneygility
 
+import org.joda.time.DateTime
+
 class Plan {
 
     static constraints = {
@@ -11,7 +13,7 @@ class Plan {
 
     String label
     Boolean isActive
-    Date startTime
-    Date endTime
+    DateTime start
+    DateTime end
 
 }

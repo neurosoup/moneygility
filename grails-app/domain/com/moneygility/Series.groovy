@@ -1,8 +1,8 @@
 package com.moneygility
 
-class Series {
+import org.joda.time.DateTime
 
-    def calendarService
+class Series {
 
     static constraints = {
     }
@@ -19,11 +19,7 @@ class Series {
     Frequency frequency
 
     def getOperationsOfMonth() {
-        def results = operations.find {
-            def now = calendarService.now.get(Calendar.MONTH)
-            def month = calendarService.getWhen(it.time).get(Calendar.MONTH)
-            month == now
-        }
-        results
+        def monthOfYear = DateTime.now().monthOfYear
+        operations.find { it.when.monthOfYear == monthOfYear }
     }
 }

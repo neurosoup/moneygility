@@ -1,20 +1,15 @@
 package com.moneygility
 
-class Operation {
+import org.joda.time.DateTime
 
-    def calendarService
+class Operation {
 
     static constraints = {
     }
 
-    static transients = ['day']
-
-    Date time
+    DateTime when
     BigDecimal amount
 
     static belongsTo = [serie: Series]
 
-    def getDay() {
-        calendarService.getWhen(time).get(Calendar.DAY_OF_MONTH)
-    }
 }

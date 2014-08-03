@@ -8,11 +8,9 @@ class Person {
     }
 
     static hasMany = [plans: Plan]
-    //static embedded = ['plans']
 
     String firstName
     String lastName
     User user
-    //List<Plan> plans
 
 }

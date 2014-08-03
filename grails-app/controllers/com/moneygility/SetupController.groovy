@@ -1,12 +1,12 @@
 package com.moneygility
 
 import com.moneygility.security.User
+import org.joda.time.DateTime
 
 class SetupController {
 
     def springSecurityService
     def seriesService
-    def calendarService
 
     def index() {
 
@@ -21,16 +21,15 @@ class SetupController {
 
         if (!plan) {
 
-            def past = calendarService.now
-            def future = calendarService.getFromNow(Calendar.YEAR, 2)
-            past.set(Calendar.DAY_OF_MONTH, 1)
-            future.set(Calendar.MONTH, Calendar.DECEMBER)
+            def now = DateTime.now()
+            def past = new DateTime(now.year, now.monthOfYear, 1, 0, 1)
+            def future = new DateTime(now.year + 2, 12, 31, 0, 0)
 
             plan = new Plan(
                     label: message(code: 'moneygility.setup.expenses.firstplan.label'),
                     isActive: true,
-                    startTime: past.getTime(),
-                    endTime: future.getTime())
+                    start: past,
+                    end: future)
 
             person.addToPlans(plan)
             person.save()

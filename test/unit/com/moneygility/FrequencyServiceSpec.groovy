@@ -2,6 +2,7 @@ package com.moneygility
 
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
+import org.joda.time.DateTime
 import org.springframework.transaction.PlatformTransactionManager
 import org.springframework.transaction.TransactionStatus
 import spock.lang.Specification
@@ -12,6 +13,7 @@ import spock.lang.Specification
 @TestFor(FrequencyService)
 class FrequencyServiceSpec extends Specification {
 
+    
     def setup() {
     }
 
@@ -21,26 +23,24 @@ class FrequencyServiceSpec extends Specification {
     void "given the fifth of the current month when we ask service to get a monthly frequency then it returns a proper monthly frequency"() {
         given:
         def day = "5"
-        def startTime = new Date()
-        def endTime = new Date() + 5
+        def start = DateTime.now()
+        def end = start.plusDays(5)
 
         when:
-        def frequency = service.getMonthly(day, startTime, endTime)
+        def frequency = service.getMonthly(day, start, end)
 
         then:
         frequency.code == service.grailsApplication.config.moneygility.frequency.monthly.code
         frequency.cronExpression == "0 0 1 ${day} 1/1 ? *"
     }
 
-    void "given a monthly frequency that starts the first day and last one month when service computes fire times then return at least one time"() {
+    void "given a monthly frequency that starts the first day of a month and last one month when service computes fire times then return exactly one time"() {
         given:
-        CalendarService calendarService = new CalendarService()
-        calendarService.transactionManager = Mock(PlatformTransactionManager) { getTransaction(_) >> Mock(TransactionStatus) }
         def code = service.grailsApplication.config.moneygility.frequency.monthly.code
         def day = 1
-        def startTime = calendarService.getWhen(2000, 12, 1)
-        def endTime = calendarService.getWhen(2000, 12, 31)
-        def frequency = new Frequency(code: code, cronExpression: "0 0 1 ${day} 1/1 ? *", startTime: startTime, endTime: endTime)
+        def start = DateTime.parse("2000-12-1")
+        def end = DateTime.parse("2000-12-31")
+        def frequency = new Frequency(code: code, cronExpression: "0 0 1 ${day} 1/1 ? *", start: start, end: end)
 
         when:
         def times = service.computeFireTimes(frequency)

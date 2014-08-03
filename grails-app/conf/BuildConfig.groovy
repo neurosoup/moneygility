@@ -95,5 +95,6 @@ grails.project.dependency.resolution = {
         compile ":google-visualization:0.7"
         compile ":lang-selector:0.3"
         compile ":spring-security-facebook:0.15.2-CORE2"
+        compile ":joda-time:1.5"
     }
 }
