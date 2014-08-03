@@ -1,12 +1,10 @@
 package com.moneygility
 
 import grails.plugins.quartz.TriggerUtils
-import grails.transaction.Transactional
 import org.joda.time.DateTime
 import org.quartz.impl.calendar.BaseCalendar
 import org.quartz.spi.OperableTrigger
 
-@Transactional
 class FrequencyService {
 
     def grailsApplication
@@ -22,7 +20,7 @@ class FrequencyService {
         new Frequency(code: code, cronExpression: "0 0 1 ${day} 1/1 ? *", start: start, end: end)
     }
 
-    def getDay(Frequency frequency) {
+    def getNextDay(Frequency frequency) {
         def nextTime = computeFireTimes(frequency).first()
         new DateTime(nextTime).dayOfMonth
 

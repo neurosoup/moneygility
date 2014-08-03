@@ -1,5 +1,6 @@
 package com.moneygility
 
+import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import org.joda.time.DateTime
 import spock.lang.Specification
@@ -8,6 +9,7 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
 @TestFor(Series)
+//@Mock(FrequencyService)
 class SeriesSpec extends Specification {
 
     def setup() {
@@ -20,11 +22,14 @@ class SeriesSpec extends Specification {
         given:
         def operation1 = new Operation(serie: domain, when: DateTime.now(), amount: 0)
         def operation2 = new Operation(serie: domain, when: DateTime.now().plusMonths(1), amount: 0)
+        FrequencyService frequencyService = mockFor(FrequencyService).createMock()
 
         when:
         //domain.addToOperations(operation1)
         //domain.addToOperations(operation2)
-        domain.save(flush: true)
+        domain.label = 'basic series'
+        domain.frequency = frequencyService.getMonthly()
+        domain.save(failOnError: true)
 
         then:
         domain.operations.count() > 0
