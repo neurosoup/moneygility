@@ -10,7 +10,7 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
 @TestFor(Series)
-@Mixin([MongoDbTestMixin])
+@Mock(Plan)
 class SeriesSpec extends Specification {
 
     def setup() {
@@ -27,7 +27,6 @@ class SeriesSpec extends Specification {
         given:
         def start = DateTime.now()
         def end = DateTime.now().plusYears(2)
-        mockDomain([Plan])
         new Plan(label: "test plan", isActive: true, start: start, end: end).save()
         def plan = Plan.list().first()
 
