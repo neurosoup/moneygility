@@ -9,7 +9,6 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
 @TestFor(Series)
-//@Mock(FrequencyService)
 class SeriesSpec extends Specification {
 
     def setup() {
@@ -18,29 +17,26 @@ class SeriesSpec extends Specification {
     def cleanup() {
     }
 
+    /*def operation1 = new Operation(serie: domain, when: DateTime.now(), amount: 0)
+    def operation2 = new Operation(serie: domain, when: DateTime.now().plusMonths(1), amount: 0)*/
+
     void "test persistence"() {
         given:
-        def operation1 = new Operation(serie: domain, when: DateTime.now(), amount: 0)
-        def operation2 = new Operation(serie: domain, when: DateTime.now().plusMonths(1), amount: 0)
-        FrequencyService frequencyService = mockFor(FrequencyService).createMock()
+        def start = DateTime.now()
+        def end = DateTime.now().plusYears(2)
+        def plan = new Plan(label: "test plan", isActive: true, start: start, end: end)
+        mockDomain(Plan, [plan])
 
         when:
-        //domain.addToOperations(operation1)
-        //domain.addToOperations(operation2)
-        domain.label = 'basic series'
-        domain.frequency = frequencyService.getMonthly()
-        domain.save(failOnError: true)
+        domain.label = 'test series'
+        domain.frequency = new Frequency(code: "monthly", cronExpression: "0 0 1 5 1/1 ? *", start: start, end: end)
+        domain.plan = plan
+        def saved = domain.save(flush: true)
 
         then:
-        domain.operations.count() > 0
+        saved != null
 
     }
 
-    void "test get operations of current month"() {
-        when:
-        def result = domain.operationsOfMonth
 
-        then:
-        result.count() == 1
-    }
 }

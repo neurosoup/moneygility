@@ -15,6 +15,13 @@ class SeriesServiceSpec extends Specification {
     def cleanup() {
     }
 
-    void "test something"() {
+    void "given a series with one operation in the current month and one operation next month when get operations on current month then return one operation"() {
+        given:
+        def series = new Series()
+        when:
+        def result = service.getOperationsOfMonth(series)
+
+        then:
+        result.count() == 1
     }
 }

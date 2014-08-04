@@ -1,6 +1,7 @@
 package com.moneygility
 
 import grails.transaction.Transactional
+import org.joda.time.DateTime
 
 @Transactional
 class SeriesService {
@@ -21,10 +22,13 @@ class SeriesService {
         series.save()
     }
 
-    def deleteByOperationId(int id) {
-        def operation = Operation.get(id)
-        operation.serie.delete()
+    def delete(int seriesId) {
+        def series = Series.get(seriesId)
+        series.delete()
     }
 
-
+    def getOperationsOfMonth(Series series) {
+        def monthOfYear = DateTime.now().monthOfYear
+        series.operations.find { it.when.monthOfYear == monthOfYear }
+    }
 }

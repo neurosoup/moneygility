@@ -10,6 +10,6 @@ class Operation {
     DateTime when
     BigDecimal amount
 
-    static belongsTo = [serie: Series]
+    static belongsTo = [series: Series]
 
 }
