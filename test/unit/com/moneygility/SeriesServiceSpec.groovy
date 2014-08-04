@@ -1,5 +1,6 @@
 package com.moneygility
 
+import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
@@ -7,6 +8,7 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
 @TestFor(SeriesService)
+@Mock(Plan)
 class SeriesServiceSpec extends Specification {
 
     def setup() {

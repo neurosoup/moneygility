@@ -2,6 +2,7 @@ package com.moneygility
 
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
+import grails.test.mixin.TestMixin
 import grails.test.mixin.mongodb.MongoDbTestMixin
 import org.joda.time.DateTime
 import spock.lang.Specification
@@ -13,7 +14,10 @@ import spock.lang.Specification
 @Mock(Plan)
 class SeriesSpec extends Specification {
 
+    def grailsApplication
+
     def setup() {
+
 
     }
 
@@ -27,18 +31,19 @@ class SeriesSpec extends Specification {
         given:
         def start = DateTime.now()
         def end = DateTime.now().plusYears(2)
-        new Plan(label: "test plan", isActive: true, start: start, end: end).save()
-        def plan = Plan.list().first()
+        /*def plan = new Plan(label: "test plan", isActive: true, start: start, end: end)
+        plan.save(failOnError: true)*/
 
 
         when:
         domain.label = 'test series'
         domain.frequency = new Frequency(code: "monthly", cronExpression: "0 0 1 5 1/1 ? *", start: start, end: end)
-        domain.plan = plan
-        def saved = domain.save(flush: true)
+        //domain.plan = plan
+        def saved = domain.save(flush: true, validate: false)
 
         then:
         saved != null
+        Series.count() > 0
 
     }
 
