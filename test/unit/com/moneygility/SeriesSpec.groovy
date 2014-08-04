@@ -2,6 +2,7 @@ package com.moneygility
 
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
+import grails.test.mixin.mongodb.MongoDbTestMixin
 import org.joda.time.DateTime
 import spock.lang.Specification
 
@@ -9,9 +10,11 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.domain.DomainClassUnitTestMixin} for usage instructions
  */
 @TestFor(Series)
+@Mixin([MongoDbTestMixin])
 class SeriesSpec extends Specification {
 
     def setup() {
+
     }
 
     def cleanup() {
@@ -24,8 +27,10 @@ class SeriesSpec extends Specification {
         given:
         def start = DateTime.now()
         def end = DateTime.now().plusYears(2)
-        def plan = new Plan(label: "test plan", isActive: true, start: start, end: end)
-        mockDomain(Plan, [plan])
+        mockDomain([Plan])
+        new Plan(label: "test plan", isActive: true, start: start, end: end).save()
+        def plan = Plan.list().first()
+
 
         when:
         domain.label = 'test series'
