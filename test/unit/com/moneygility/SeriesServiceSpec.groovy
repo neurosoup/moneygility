@@ -26,8 +26,8 @@ class SeriesServiceSpec extends Specification {
 
         def series = new Series(label: "test series", frequency: frequency, plan: plan)
 
-        def operation1 = new Operation(serie: domain, when: DateTime.now(), amount: 0)
-        def operation2 = new Operation(serie: domain, when: DateTime.now().plusMonths(1), amount: 0)
+        def operation1 = new Operation(series: series, when: DateTime.now(), amount: 0)
+        def operation2 = new Operation(series: series, when: DateTime.now().plusMonths(1), amount: 0)
     }
 
     def cleanup() {
