@@ -9,16 +9,25 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
 @TestFor(SeriesService)
-@Mock(Plan)
-@Mock(Person)
+@Mock([Plan, Person, Series, Operation])
 class SeriesServiceSpec extends Specification {
 
     def setup() {
+
+        def person = new Person(firstName: "john", lastName: "doe")
+        person.save(failOnError: true)
+
         def start = DateTime.now()
         def end = DateTime.now().plusYears(2)
-        def person = new Person(firstName: "john", lastName: "doe")
         def plan = new Plan(label: "test plan", isActive: true, start: start, end: end)
         plan.save(failOnError: true)
+
+        def frequency = new Frequency(code: "monthly", cronExpression: "0 0 1 5 1/1 ? *", start: start, end: end)
+
+        def series = new Series(label: "test series", frequency: frequency, plan: plan)
+
+        def operation1 = new Operation(serie: domain, when: DateTime.now(), amount: 0)
+        def operation2 = new Operation(serie: domain, when: DateTime.now().plusMonths(1), amount: 0)
     }
 
     def cleanup() {
