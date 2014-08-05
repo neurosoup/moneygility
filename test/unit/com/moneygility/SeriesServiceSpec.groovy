@@ -2,6 +2,7 @@ package com.moneygility
 
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
+import org.joda.time.DateTime
 import spock.lang.Specification
 
 /**
@@ -9,9 +10,15 @@ import spock.lang.Specification
  */
 @TestFor(SeriesService)
 @Mock(Plan)
+@Mock(Person)
 class SeriesServiceSpec extends Specification {
 
     def setup() {
+        def start = DateTime.now()
+        def end = DateTime.now().plusYears(2)
+        def person = new Person(firstName: "john", lastName: "doe")
+        def plan = new Plan(label: "test plan", isActive: true, start: start, end: end)
+        plan.save(failOnError: true)
     }
 
     def cleanup() {

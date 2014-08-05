@@ -5,6 +5,7 @@ import com.moneygility.security.User
 class Person {
 
     static constraints = {
+        user: null
     }
 
     static hasMany = [plans: Plan]
