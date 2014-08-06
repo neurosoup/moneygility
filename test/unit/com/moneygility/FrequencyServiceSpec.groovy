@@ -13,8 +13,8 @@ import spock.lang.Specification
 @TestFor(FrequencyService)
 class FrequencyServiceSpec extends Specification {
 
-    
     def setup() {
+        grailsApplication.config.moneygility.frequency.monthly.code = "monthly"
     }
 
     def cleanup() {
@@ -30,13 +30,13 @@ class FrequencyServiceSpec extends Specification {
         def frequency = service.getMonthly(day, start, end)
 
         then:
-        frequency.code == service.grailsApplication.config.moneygility.frequency.monthly.code
+        frequency.code == grailsApplication.config.moneygility.frequency.monthly.code
         frequency.cronExpression == "0 0 1 ${day} 1/1 ? *"
     }
 
     void "given a monthly frequency that starts the first day of a month and last one month when service computes fire times then return exactly one time"() {
         given:
-        def code = service.grailsApplication.config.moneygility.frequency.monthly.code
+        def code = grailsApplication.config.moneygility.frequency.monthly.code
         def day = 1
         def start = DateTime.parse("2000-12-1")
         def end = DateTime.parse("2000-12-31")

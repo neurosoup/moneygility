@@ -169,9 +169,8 @@ grails.plugin.springsecurity.controllerAnnotations.staticRules = [
 moneygility {
     frequency {
         monthly {
-            code = 'monthly'
-            day = '5'
+            code = "monthly"
+            day = "5"
         }
-
     }
 }

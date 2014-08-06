@@ -1,5 +1,6 @@
 package com.moneygility
 
+import grails.buildtestdata.mixin.Build
 import grails.test.mixin.Mock
 import grails.test.mixin.TestFor
 import org.joda.time.DateTime
@@ -9,42 +10,40 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
 @TestFor(SeriesService)
-@Mock([Plan, Person, Series, Operation])
+//@Mock([Plan, Person, Series, Operation])
+@Mock(FrequencyService)
 class SeriesServiceSpec extends Specification {
 
     def setup() {
-
+        //service.frequencyService = new FrequencyService()
+        //service.frequencyService.grailsApplication = grailsApplication
+        grailsApplication.config.moneygility.frequency.monthly.code = "monthly"
 
     }
 
     def cleanup() {
     }
 
-    void "given a series with one operation in the current month and one operation next month when get operations on current month then return one operation"() {
+    void "build a series with one operation"() {
         given:
-        def person = new Person(firstName: "john", lastName: "doe")
-        person.save(failOnError: true)
+        def person = new Person([firstName: "john", lastName: "doe"])
+        //person.save(failOnError: true)
 
         def start = DateTime.now()
         def end = DateTime.now().plusYears(2)
         def plan = new Plan(person: person, label: "test plan", isActive: true, start: start, end: end)
-        plan.save(failOnError: true)
+        //plan.save(failOnError: true)
 
-        def frequency = new Frequency(code: "monthly", cronExpression: "0 0 1 5 1/1 ? *", start: start, end: end)
+        def seriesMocker = mockFor(Series)
+        seriesMocker.demand.addToOperations() {
+            operations.add()
+        }
 
-        def series = new Series(label: "test series", frequency: frequency, plan: plan)
-
-        series.operations.add(new Operation(series: series, when: DateTime.now(), amount: 0))
-        series.operations.add(new Operation(series: series, when: DateTime.now().plusMonths(1), amount: 0))
-
-        series.save(failOnError: true)
-
-        def sq = Series.find { it.label == "test series" }
 
         when:
-        def result = service.getOperationsOfMonth(series)
+        service.build(plan, 0.0, "Test series", "monthly", "5")
 
         then:
-        result.count() == 1
+        Series.count() > 0
     }
 }

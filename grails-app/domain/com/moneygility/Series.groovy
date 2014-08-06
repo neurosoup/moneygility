@@ -1,5 +1,7 @@
 package com.moneygility
 
+import org.joda.time.DateTime
+
 class Series {
 
     static constraints = {
@@ -13,5 +15,10 @@ class Series {
 
     String label
     Frequency frequency
+
+    def findOperationsInCurrentMonth() {
+        def monthOfYear = DateTime.now().monthOfYear
+        operations.findAll { it.when.monthOfYear == monthOfYear }
+    }
 
 }
