@@ -20,7 +20,7 @@ class FrequencyServiceSpec extends Specification {
     def cleanup() {
     }
 
-    void "given the fifth of the current month when we ask service to get a monthly frequency then it returns a proper monthly frequency"() {
+    void "given the fifth of the current month when get a monthly frequency then code and cron expression are correct"() {
         given:
         def day = "5"
         def start = DateTime.now()
@@ -38,7 +38,7 @@ class FrequencyServiceSpec extends Specification {
         given:
         def code = grailsApplication.config.moneygility.frequency.monthly.code
         def day = 1
-        def start = DateTime.parse("2000-12-1")
+        def start = DateTime.parse("2000-11-30")
         def end = DateTime.parse("2000-12-31")
         def frequency = new Frequency(code: code, cronExpression: "0 0 1 ${day} 1/1 ? *", start: start, end: end)
 
@@ -47,5 +47,6 @@ class FrequencyServiceSpec extends Specification {
 
         then:
         times.size() == 1
+        new DateTime(times.first()).month == 12
     }
 }
