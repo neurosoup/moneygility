@@ -15,7 +15,7 @@ class SeriesService {
         def times = frequencyService.computeFireTimes(frequency)
 
         times.each {
-            def operation = new Operation(amount: amount, series: series, when: new DateTime(it))
+            def operation = new Operation(amount: amount, when: new DateTime(it))
             series.addToOperations(operation)
         }
 

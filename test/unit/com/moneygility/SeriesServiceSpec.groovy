@@ -10,7 +10,7 @@ import spock.lang.Specification
  * See the API for {@link grails.test.mixin.services.ServiceUnitTestMixin} for usage instructions
  */
 @TestFor(SeriesService)
-//@Mock([Plan, Person, Series, Operation])
+@Mock([Series, Operation])
 @Mock(FrequencyService)
 class SeriesServiceSpec extends Specification {
 
@@ -26,19 +26,13 @@ class SeriesServiceSpec extends Specification {
 
     void "build a series with one operation"() {
         given:
-        def person = new Person([firstName: "john", lastName: "doe"])
+        //def person = new Person([firstName: "john", lastName: "doe"])
         //person.save(failOnError: true)
 
         def start = DateTime.now()
         def end = DateTime.now().plusYears(2)
-        def plan = new Plan(person: person, label: "test plan", isActive: true, start: start, end: end)
+        def plan = new Plan(start: start, end: end)
         //plan.save(failOnError: true)
-
-        def seriesMocker = mockFor(Series)
-        seriesMocker.demand.addToOperations() {
-            operations.add()
-        }
-
 
         when:
         service.build(plan, 0.0, "Test series", "monthly", "5")
