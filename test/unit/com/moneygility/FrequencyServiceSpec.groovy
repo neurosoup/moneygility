@@ -47,6 +47,9 @@ class FrequencyServiceSpec extends Specification {
 
         then:
         times.size() == 1
-        new DateTime(times.first()).month == 12
+        Date firstDate = times.first()
+        DateTime date = new DateTime(firstDate)
+        date.monthOfYear == 12
+        date.dayOfMonth == 1
     }
 }
