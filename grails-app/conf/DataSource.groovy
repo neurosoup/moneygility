@@ -7,7 +7,7 @@ environments {
                 port = 27017
                 username = "fullUser"
                 password = "Fr@gile+123"
-                databaseName = "moneygility-dev"
+                databaseName = "moneygilitydev"
             }
         }
     }
@@ -18,8 +18,12 @@ environments {
                 port = 27017
                 username = "fullUser"
                 password = "Fr@gile+123"
-                databaseName = "moneygility-test"
+                databaseName = "moneygilitytest"
             }
+            /*dataSource {
+                dbCreate = "update"
+                url = "jdbc:h2:mem:testDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE"
+            }*/
         }
     }
     production {
